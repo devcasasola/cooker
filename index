@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COOKER | Tu asistente culinario inteligente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#251913",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary-fixed": "#341100",
+                    "primary-fixed-dim": "#ffb690",
+                    "primary": "#9d4300",
+                    "on-secondary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006398",
+                    "inverse-primary": "#ffb690",
+                    "surface-bright": "#fff8f6",
+                    "primary-fixed": "#ffdbca",
+                    "on-primary-container": "#582200",
+                    "outline": "#8c7164",
+                    "on-background": "#251913",
+                    "secondary-fixed-dim": "#4edea3",
+                    "error-container": "#ffdad6",
+                    "surface": "#fff8f6",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#f97316",
+                    "surface-container-low": "#fff1eb",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#cde5ff",
+                    "on-surface-variant": "#584237",
+                    "outline-variant": "#e0c0b1",
+                    "surface-container-high": "#fce3d9",
+                    "background": "#fff8f6",
+                    "surface-container-highest": "#f6ded3",
+                    "surface-container": "#ffeae0",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#00a2f4",
+                    "tertiary-fixed-dim": "#93ccff",
+                    "on-secondary-container": "#00714d",
+                    "inverse-surface": "#3c2d26",
+                    "inverse-on-surface": "#ffede6",
+                    "secondary-container": "#6cf8bb",
+                    "error": "#ba1a1a",
+                    "secondary": "#006c49",
+                    "surface-variant": "#f6ded3",
+                    "surface-tint": "#9d4300",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-dim": "#edd5cb",
+                    "on-tertiary-container": "#003554",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-tertiary-fixed": "#001d32",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "1.5rem",
+                    "xs": "0.5rem",
+                    "lg": "2.5rem",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "1rem",
+                    "base": "4px",
+                    "xl": "4rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FFFBEB; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .card-shadow { box-shadow: 0 4px 20px rgba(31, 41, 55, 0.06); }
+        .card-shadow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(31, 41, 55, 0.1); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto bg-surface shadow-sm">
+<div class="text-headline-md font-headline-md font-bold text-primary tracking-tight">COOKER</div>
+<div class="hidden md:flex gap-md items-center font-body-md text-body-md">
+<a class="text-primary font-bold border-b-2 border-primary hover:opacity-80 transition-all duration-200" href="#">Cómo funciona</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Beneficios</a>
+<a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#">App</a>
+</div>
+<button class="bg-primary text-on-primary px-md py-2 rounded-lg font-label-md text-label-md hover:opacity-80 transition-all duration-200 active:scale-95">
+            Empezar
+        </button>
+</nav>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative px-gutter py-xl flex flex-col lg:flex-row items-center gap-xl max-w-container-max mx-auto">
+<div class="flex-1 reveal active text-center lg:text-left">
+<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-md">
+                    Cocina de forma inteligente, <span class="text-primary">sin desperdicios.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-xl mx-auto lg:mx-0">
+                    COOKER transforma los ingredientes que ya tienes en tu nevera en recetas deliciosas y saludables en cuestión de segundos.
+                </p>
+<div class="flex flex-col sm:flex-row gap-sm justify-center lg:justify-start">
+<a class="bg-primary text-on-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-lg" href="app.html">
+                        Probar ahora
+                    </a>
+<a class="border-2 border-primary text-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:bg-primary/5 active:scale-95" href="#how-it-works">
+                        Ver cómo funciona
+                    </a>
+</div>
+</div>
+<div class="flex-1 reveal active">
+<div class="relative w-full aspect-square md:aspect-video lg:aspect-square bg-surface-container rounded-[24px] overflow-hidden card-shadow">
+<img class="w-full h-full object-cover" data-alt="A top-down view of a modern, bright kitchen counter featuring a tablet displaying the COOKER app interface. Around the tablet are fresh vegetables like bell peppers, spinach, and tomatoes, neatly arranged. The lighting is bright and natural, emphasizing a clean and organized culinary environment with warm orange accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9IlQRF_4j-xRZycnWo_PHiDG1Uvycx5K-9l0TQAG1AAdKh_L3abShZlU37bWYXxkGgiCxNHDh5tNkYQEDcu3xFETVcDslf1kUyOsEWAvYZ5vmTvY9r0ToaPPhrLqMSzNjECazEUsw8Sqaq2vcQz5HGi7cF3IhYEggj3lBCPzKnt14C-I_vAUmZ7P95vEx5lgVerubRb2ZHYQ-Zu9N1RIRBu6RiEYhCyL4YX8ZVC-6hfj4FphwIv4iKSsVtOwbQmhPoRvteghOWQ"/>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-xl bg-surface-container-low" id="how-it-works">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="text-center mb-xl reveal">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Cómo funciona COOKER</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Tres pasos simples para una mejor alimentación.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-on-primary-container text-3xl">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Añade tus ingredientes</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Escanea o escribe lo que tienes en tu despensa y nevera.</p>
+</div>
+<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal" style="transition-delay: 100ms;">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl">restaurant_menu</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Elige una receta</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Nuestro algoritmo sugiere platos basados en tus gustos y existencias.</p>
+</div>
+<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal" style="transition-delay: 200ms;">
+<div class="w-16 h-16 bg-tertiary-container rounded-full flex items-center justify-center mx-auto mb-md">
+<span class="material-symbols-outlined text-on-tertiary-container text-3xl">eco</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-sm">Cocina sin desperdicio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Sigue las instrucciones guiadas y ahorra dinero reduciendo desechos.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits: Bento Grid -->
+<section class="py-xl px-gutter max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<div class="md:col-span-8 bg-primary-container/20 p-lg rounded-xl reveal flex flex-col justify-center min-h-[300px]">
+<span class="bg-primary text-on-primary w-fit px-sm py-1 rounded-full text-label-md font-label-md mb-md">EFICIENCIA</span>
+<h3 class="font-headline-lg text-headline-lg mb-md">Reduce la indecisión diaria</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant">No más tiempo perdido frente a la nevera abierta. COOKER decide por ti analizando perfiles nutricionales y tiempo disponible.</p>
+</div>
+<div class="md:col-span-4 bg-secondary-container/20 p-lg rounded-xl reveal flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-5xl mb-md">savings</span>
+<h3 class="font-headline-md text-headline-md mb-sm">Ahorra hasta un 30%</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Optimiza tus compras y usa hasta el último ingrediente antes de que caduque.</p>
+</div>
+<div class="md:col-span-4 bg-tertiary-container/20 p-lg rounded-xl reveal flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-tertiary text-5xl mb-md">delete_sweep</span>
+<h3 class="font-headline-md text-headline-md mb-sm">Cero desperdicio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Contribuye al planeta mientras disfrutas de platos gourmet en casa.</p>
+</div>
+<div class="md:col-span-8 bg-surface-container-highest p-lg rounded-xl reveal flex items-center gap-md">
+<div class="hidden sm:block w-32 h-32 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="A macro photography shot of colorful, fresh sliced citrus fruits and herbs on a pristine white marble surface. High-key lighting highlights the vibrant textures and colors, aligning with a fresh and professional culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDWsIvK8rl0_zumCZtWfPoV-D209OMZO2kFAVczpZYNJCB4-TVcu07qm_QmqeYAVJtB9qVFdSf-gv63Cnl6C_6eO4SYJgWCctwLKS8LmcCp7Ji-eszkgdJrA2dGYCc0dJ9NFadJ7b1QS-zohnPW79DL3Xj5nANsdoKYux-hTgBVMUmMfb6IGfcK1yrhgo3GoSUPR1kfmRiXXhsy9ZbW18oMBU3x8CwwDSuzI85tH57ns2taT4UWgzjRcSf-hvq0R6zxJ8sY2lGaQ"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md mb-sm">Ingredientes de temporada</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Nuestra IA prioriza ingredientes locales y de temporada para maximizar el sabor y frescura de tus comidas.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recipe Explorer -->
+<section class="py-xl bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex justify-between items-end mb-xl reveal">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Explora nuevas ideas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Basadas en lo que la comunidad está cocinando hoy.</p>
+</div>
+<button class="text-primary font-label-md flex items-center gap-base hover:gap-sm transition-all">
+                        Ver todas <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Recipe Card 1 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A delicious bowl of Mediterranean Buddha Bowl with chickpeas, avocado, and quinoa. Colorful presentation with soft focus background of a modern kitchen. High-quality food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8IjyKgTNNMiS-nxXn0enXUZLwFoPGjPzOlpouDRwg3rVb1SkAYg9T9GeI22AjY0NqKVx_H-xiUctCkjVyXQlG1KEWCO3SKla7HsU-Vvhatic6BoBZJ3bXjBDA0Ig_NjfcFbAXdW_ERe_BwdWcCCkOrMbTpIHxGNmi3e-yHPWPTeodJhAnkB9MTWvMAtv9nyW96fOcgbsn1qrMBv1IXxNZdhtgEtiJV-HQXXBMXiJ1LNQove6adN7oVEJL2PoO_ZKWlpahL8qlA"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">98% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Buddha Bowl Mediterráneo</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 15 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 2 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 100ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Creamy pumpkin soup served in a ceramic bowl with toasted pumpkin seeds on top. Warm autumn lighting, cozy kitchen atmosphere, minimalist presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJeQfj9_f2JW1wgZjrrLMB71-KfKfPqtnZrr8d909kGtnjG4VLEgrYHSrlWQV8c9ENNK2TCDdTwt5XNsOhmx54nm1zr1HLV-Go1Uve6U6O-wn7WjYcgv82M8f2TRQ8Zj6IyQkrB6OQEqkDjSO-hOSrF24JOCax-6FwneUc_UXlZpUGu46Hh6kmd6aR3DqEtiNhswi22NBckD-trkr2bIicrvGpfHGngHteD9lmW_xvB1Bz5Z4eLrnBfTpGmfVcblRUPL_jqj-JA"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">85% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Crema de Calabaza y Jengibre</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 25 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Medio</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 3 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 200ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Authentic Italian pasta carbonara with pancetta and black pepper. Golden lighting, rustic wooden table background, high contrast food styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSObZDt6QOVipKg1ARokjoc-Am7Sg0_zlBMD_XBq_Is3618YH8EJXiD1XjzUXe1tvP6aiscSbbTfZmbcIgT1aT9ws4Vj1fT2jAdHJN6PDaxvvDwnaav-sesc17BPRE2ZHYQbU5ob-qqwP0XaVxDwYsqImnfbFlMOTlgaO5auIZZr19OF1R-X5R0gridycCMJ9DpZJmGwpiATwnXlAZV9R2b8q6w1C4UKlQWQRnRsz3eWL8Q9GuDb9mAFtL768N-1-joDR1BSyyXg"/>
+<div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full">Top Pick</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Pasta Carbonara Clásica</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 20 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 4 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 300ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Fresh salmon poke bowl with edamame, seaweed, and sesame seeds. Bright, vibrant colors, clean studio lighting, modern healthy food presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tKeF8SF6HJdPewBw9az0UwrQeWdlfFS7w11T153q8rTtkmKM0Exy3R035mLYL-BiYZikIjXFB3RtJ3bsXpdYMtDjtfVbWr-xSUsp8gqYkHqD2w065Q2iuPMe7Rk48lBwdmyzTVRHrhBFu3kslwCZgnzNPlvkP6C1Z_o8lKkjaZTI9qCTlwaKm47i8fLzksAV9HAd_U0MCVaQ0u2WDVk_e6yALyqF4TbIT8-oufsWSGNY6xVgXn5i44tleGI2a0ufrkMnXL-vfQ"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">92% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Poke Bowl de Salmón</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 10 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-xl px-gutter max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-center mb-xl reveal">Lo que dicen nuestros chefs</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md">
+<p class="font-body-md text-body-md italic text-on-surface-variant">"COOKER ha cambiado totalmente mi rutina. Antes tiraba mucha comida, ahora siempre encuentro algo rico que cocinar."</p>
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a smiling young woman in a bright, modern interior setting. She looks happy and confident, professional photography with soft bokeh." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuhz4B0Urz-LJYre1mF_CtihGWlYS-XjxHC-FTNvb383TIWyIkZ_gLu1WPmK7TUqGLdjPVK7sWEKKKqOKkPHz1rGuVVpGWnORc1qTviyUUvYv1r7IX5_Og06j_Z1A_-gMdWZKlAI1Ft6e228PnpCdmjrOav5EiP3_ye4YcZEnuvoSMPrMLJ9SSzhpzFZc4L1BEq2n0ZHJ0nc2RzzauAVnLh-NM7nAvY_CzVwDBjnlIo26sUMp9k4YC-gNg0_96seuB46t6dEmQzg"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Elena García</p>
+<p class="text-xs text-on-surface-variant">Madre y Diseñadora</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md" style="transition-delay: 100ms;">
+<p class="font-body-md text-body-md italic text-on-surface-variant">"La interfaz es súper limpia y las sugerencias son sorprendentemente precisas. Me encanta el temporizador paso a paso."</p>
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful middle-aged man with glasses in a bright sunlit kitchen. He is wearing a casual shirt and looking at the camera with a friendly expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO7wa16SHkRWJkV3B1G4_uSp_YFmWz_x611NBd2gtSijaIWtmbOLsBiSRdwZafzUeulCneK2FlHs_O_BnGQhy1JAou1okliACuxnUmDQRHAPI_PksFZx3SyzJuo5i3SHgTpqlv2j2Zfz_FYsDHTnkfO4ews6qE-1yTYpnAClhGjjww3etq6KpIzYE3qgU5k0v3xcYyV0CDbzBOz-b6TQff3aAjiGh-4bG4rl97EwqiPbJR1KK629K34Itqos53vX2oct2q-DUTaA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">Marc Torres</p>
+<p class="text-xs text-on-surface-variant">Entusiasta de la cocina</p>
+</div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md" style="transition-delay: 200ms;">
+<p class="font-body-md text-body-md italic text-on-surface-variant">"Como estudiante, me ayuda a ahorrar dinero y a comer mucho más sano que antes. ¡Imprescindible!"</p>
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young adult man with a friendly smile, standing in a brightly lit cafe setting. He looks relaxed and satisfied." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpnHxJBALNW-YW2vPsRPqE2fuxZvp8MGjVyLSKR3MnxeSEJCZsdyd076Ij4NGSE-wseXirldgudReBNXIYKTaT_j08be4juTUea5fCsjWu9ColHY_evL2gvffo7dtTGqOQxbxdxs0lnIsRE6xSYvilJ07BV430YYdkNS_Hril3xyJNE2hj9QfQHbgBpe7_q_E0Ctf8FevC61_gc13-vMIeyxnGAJ7Tk1SpjUkaH1F9IrpKsdHO-XRRkZbqJ5ZS8y2zF-jWlZFfZA"/>
+</div>
+<div>
+<p class="font-label-md text-label-md">David Soler</p>
+<p class="text-xs text-on-surface-variant">Estudiante de Medicina</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+<section class="py-xl bg-primary text-on-primary text-center px-gutter">
+<div class="max-w-3xl mx-auto reveal">
+<h2 class="font-display-lg text-[40px] leading-tight mb-md">¿Listo para revolucionar tu cocina?</h2>
+<p class="font-body-lg text-body-lg mb-lg opacity-90">Únete a miles de personas que ya están ahorrando tiempo y dinero con COOKER.</p>
+<button class="bg-on-primary text-primary h-[56px] px-xl rounded-full font-headline-md text-headline-md hover:bg-opacity-90 transition-all active:scale-95 shadow-xl">
+                    Empezar a cocinar ahora
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-lg px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md bg-surface-container-low border-t border-outline-variant font-label-md text-label-md">
+<div class="flex flex-col gap-sm">
+<div class="text-headline-md font-headline-md font-bold text-primary mb-sm">COOKER</div>
+<p class="text-on-surface-variant">Tu asistente culinario inteligente para un hogar más sostenible.</p>
+<p class="mt-md text-on-surface-variant opacity-60">© 2024 COOKER. Tu asistente culinario inteligente.</p>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-md">Plataforma</h4>
+<ul class="flex flex-col gap-xs text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Cómo funciona</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Recetas</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Planes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-md">Empresa</h4>
+<ul class="flex flex-col gap-xs text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-primary mb-md">Contacto</h4>
+<ul class="flex flex-col gap-xs text-on-surface-variant">
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">mail</span> hola@cooker.app</li>
+<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">location_on</span> Barcelona, España</li>
+</ul>
+<div class="flex gap-sm mt-md">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">face_nod</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">language</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">public</span>
+</div>
+</div>
+</footer>
+<script>
+        // Intersection Observer for Reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Micro-interactions for hover states
+        document.querySelectorAll('.card-shadow').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
+            });
+        });
+    </script>
+</body></html>
