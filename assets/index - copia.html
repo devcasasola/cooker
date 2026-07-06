@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>COOKER | Tu asistente culinario inteligente</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<!--FAVICONS-->
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<!--FAVICONS ENDS-->
+<script src="https://kit.fontawesome.com/7405686940.js" crossorigin="anonymous"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#251913",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary-fixed": "#341100",
+                    "primary-fixed-dim": "#ffb690",
+                    "primary": "#9d4300",
+                    "on-secondary-fixed": "#002113",
+                    "on-error": "#ffffff",
+                    "tertiary": "#006398",
+                    "inverse-primary": "#ffb690",
+                    "surface-bright": "#fff8f6",
+                    "primary-fixed": "#ffdbca",
+                    "on-primary-container": "#582200",
+                    "outline": "#8c7164",
+                    "on-background": "#251913",
+                    "secondary-fixed-dim": "#4edea3",
+                    "error-container": "#ffdad6",
+                    "surface": "#fff8f6",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#f97316",
+                    "surface-container-low": "#fff1eb",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#cde5ff",
+                    "on-surface-variant": "#584237",
+                    "outline-variant": "#e0c0b1",
+                    "surface-container-high": "#fce3d9",
+                    "background": "#fff8f6",
+                    "surface-container-highest": "#f6ded3",
+                    "surface-container": "#ffeae0",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#00a2f4",
+                    "tertiary-fixed-dim": "#93ccff",
+                    "on-secondary-container": "#00714d",
+                    "inverse-surface": "#3c2d26",
+                    "inverse-on-surface": "#ffede6",
+                    "secondary-container": "#6cf8bb",
+                    "error": "#ba1a1a",
+                    "secondary": "#006c49",
+                    "surface-variant": "#f6ded3",
+                    "surface-tint": "#9d4300",
+                    "secondary-fixed": "#6ffbbe",
+                    "surface-dim": "#edd5cb",
+                    "on-tertiary-container": "#003554",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-tertiary-fixed": "#001d32",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "md": "1.5rem",
+                    "xs": "0.5rem",
+                    "lg": "2.5rem",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "sm": "1rem",
+                    "base": "4px",
+                    "xl": "4rem"
+            },
+            "fontFamily": {
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #FFFBEB; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .card-shadow { box-shadow: 0 4px 20px rgba(31, 41, 55, 0.06); }
+        .card-shadow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(31, 41, 55, 0.1); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-4 left-4 right-4 z-50 max-w-[1200px] mx-auto flex justify-between items-center px-6 py-3 bg-surface/80 backdrop-blur-md border border-outline-variant/20 rounded-full shadow-lg transition-all duration-300">
+  <div class="text-headline-md font-headline-md font-bold text-primary tracking-tight">COOKER</div>
+  
+  <div class="hidden md:flex gap-md items-center font-body-md text-body-md">
+    <a class="text-primary font-bold border-b-2 border-primary hover:opacity-80 transition-all duration-200" href="#how-it-works">Cómo funciona</a>
+    <a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#benefits">Beneficios</a>
+    <a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#cta">App</a>
+  </div>
+  
+  <button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:opacity-80 transition-all duration-200 active:scale-95">
+  <i class="fa-solid fa-location-arrow"></i> Empezar
+  </button>
+</nav>
+<main class="overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[100vh] grid grid-cols-1 lg:grid-cols-2 items-stretch overflow-hidden" id="hero">
+  
+  <div class="reveal active flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-6 py-12 sm:px-12 lg:pl-24 lg:pr-12 z-20">
+    <div class="max-w-xl">
+      <h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-md">
+        Cocina de forma inteligente, <span class="text-primary">sin desperdicios.</span>
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+        COOKER transforma los ingredientes que ya tienes en tu nevera en recetas deliciosas y saludables en cuestión de segundos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-sm justify-center lg:justify-start">
+        <a class="bg-primary text-on-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-lg" href="app.html">
+          Probar ahora
+        </a>
+        <a class="border-2 border-primary text-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:bg-primary/5 active:scale-95" href="#how-it-works">
+          Ver cómo funciona
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative min-h-[350px] lg:min-h-full w-full overflow-hidden reveal active z-10">
+    
+    <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#FFFBEB] via-[#FFFBEB]/90 via-40% to-transparent z-20 hidden lg:block"></div>
+  
+    <div class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#FFFBEB] via-[#FFFBEB]/90 via-30% to-transparent z-20 lg:hidden"></div>
+
+    <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline>
+      <source src="assets/Person_cooking_stew_in_bowl_202607011740.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+
+</section>
+<!-- How It Works -->
+<section class="py-32 bg-[#FBF7F4] relative overflow-hidden" id="how-it-works">
+  
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-24 reveal">
+      <div class="inline-flex items-center gap-2 border border-[#251913]/10 bg-white rounded-full px-5 py-2 text-xs font-bold tracking-widest text-primary uppercase mb-5 shadow-sm">
+        <span class="material-symbols-outlined text-sm">cooking</span> El método cooker
+      </div>
+      <h2 class="font-headline-lg text-4xl sm:text-5xl font-extrabold text-[#251913] tracking-tight max-w-3xl mx-auto leading-[1.15]">
+        Tu camino hacia una cocina inteligente
+      </h2>
+      <p class="font-body-md text-base sm:text-lg text-[#251913]/70 mt-4 max-w-2xl mx-auto leading-relaxed">
+        Descubre cómo COOKER transforma tu rutina culinaria diaria eliminando por completo la indecisión y reduciendo el desperdicio en tu hogar.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 relative">
+      
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-[2rem] flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">01</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Uno</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Crea tu perfil</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Configura tus preferencias alimenticias, intolerancias y objetivos de ahorro en menos de un minuto de forma gratuita y personalizada.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col gap-3 justify-center shadow-inner relative overflow-hidden">
+            <div class="w-full bg-white border border-[#251913]/10 rounded-xl p-3 text-xs text-[#251913]/50 flex items-center gap-2 shadow-sm">
+              <span class="material-symbols-outlined text-sm text-[#251913]/40">mail</span> tu-correo@cooker.com
+            </div>
+            <div class="w-full bg-primary text-white text-center rounded-xl py-3 text-xs font-bold shadow-md hover:bg-primary/90 transition-colors cursor-pointer">
+              Empezar gratis
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-[2rem] flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 100ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">02</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Dos</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Sube tu despensa</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Dicta por voz, escribe o toma una foto a tus ingredientes actuales. La inteligencia artificial integrada de COOKER los catalogará al instante.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col gap-2.5 justify-center shadow-inner">
+            <div class="flex items-center justify-between bg-white border border-[#251913]/5 rounded-xl p-2.5 text-xs text-[#251913]/80 shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check_circle</span> 
+                <span class="font-medium">Tomates de colgar</span>
+              </div>
+              <span class="text-[11px] text-[#251913]/40 bg-[#251913]/5 px-2 py-0.5 rounded-md">4 uds</span>
+            </div>
+            <div class="flex items-center justify-between bg-white border border-[#251913]/5 rounded-xl p-2.5 text-xs text-[#251913]/80 shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check_circle</span> 
+                <span class="font-medium">Pechuga de Pollo</span>
+              </div>
+              <span class="text-[11px] text-[#251913]/40 bg-[#251913]/5 px-2 py-0.5 rounded-md">350g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-[2rem] flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 200ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">03</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Tres</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Elige tu receta</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              El sistema calcula combinaciones idóneas según el vencimiento de tus productos frescos y te sugiere menús balanceados al momento.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex items-center justify-between shadow-inner relative overflow-hidden">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-bold text-[#251913] leading-tight">Wok de Pollo Sostenible</span>
+              <span class="text-[10px] text-[#251913]/50 flex items-center gap-1 mt-0.5">
+                <span class="material-symbols-outlined text-[12px] text-primary">schedule</span> 15 min • Muy Fácil
+              </span>
+            </div>
+            <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-full flex flex-col items-center justify-center text-primary shadow-sm flex-shrink-0">
+              <span class="text-xs font-extrabold leading-none">98%</span>
+              <span class="text-[7px] font-semibold tracking-tighter uppercase mt-0.5">Match</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-[2rem] flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 300ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">04</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Cuatro</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Cero desperdicios</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Cocina con instrucciones guiadas e intuitivas, ahorrando significativamente en tu compra mensual y reduciendo la huella de carbono hogareña.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col justify-center gap-2.5 shadow-inner">
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold shadow-sm flex-shrink-0">1</div>
+              <p class="text-[11px] text-[#251913]/80 font-medium truncate">Trocea los tomates e introduce el pollo...</p>
+            </div>
+            <div class="w-full bg-[#251913]/10 h-2 rounded-full overflow-hidden shadow-xs">
+              <div class="bg-gradient-to-r from-primary to-primary/80 w-1/2 h-full rounded-full"></div>
+            </div>
+            <div class="flex justify-between text-[9px] text-[#251913]/40 font-semibold uppercase tracking-wider px-0.5">
+              <span>Progreso de receta</span>
+              <span>50%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<!-- Benefits: Bento Grid -->
+<section class="py-24 bg-[#FBF7F4] px-4 sm:px-6" id="benefits">
+  
+  <div class="max-w-7xl mx-auto bg-white border border-[#251913]/5 p-8 md:p-12 rounded-3xl shadow-[0_10px_30px_rgba(37,25,19,0.02)]">
+    
+    <div class="text-center mb-16 reveal">
+      <div class="inline-flex items-center gap-2 border border-[#251913]/10 bg-[#FBF7F4] rounded-full px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase mb-4 shadow-xs">
+        <span class="material-symbols-outlined text-sm">workspace_premium</span> Beneficios clave
+      </div>
+      <h2 class="font-headline-lg text-3xl md:text-4xl font-extrabold text-[#251913] tracking-tight">
+        Por qué cambiar tu forma de cocinar
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch">
+      
+      <div class="md:col-span-5 bg-[#FBF7F4] border border-[#251913]/5 p-8 rounded-2xl flex flex-col justify-between min-h-[380px] relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+        <div>
+          <h3 class="font-headline-md text-xl font-bold text-[#251913] tracking-tight mb-3">
+            Maximiza tu tiempo libre
+          </h3>
+          <p class="font-body-md text-sm text-[#251913]/70 leading-relaxed max-w-xs">
+            No más minutos perdidos frente a la nevera abierta. COOKER decide por ti analizando perfiles nutricionales en segundos.
+          </p>
+        </div>
+        
+        <div class="relative w-full h-40 mt-4 flex items-center justify-center">
+          <div class="w-48 h-28 bg-primary rounded-xl shadow-md p-4 relative flex flex-col justify-between transform -rotate-2 group-hover:rotate-0 transition-transform duration-300">
+            <div class="flex justify-between items-start">
+              <span class="material-symbols-outlined text-white/40 text-lg animate-spin-slow">cooking</span>
+              <span class="text-[9px] font-bold tracking-wider text-white/60 uppercase">Cooker Premium</span>
+            </div>
+            <div class="w-12 h-2 bg-white/20 rounded-full mb-1"></div>
+          </div>
+          <div class="absolute top-4 left-10 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm animate-bounce" style="animation-duration: 3s;">
+            <span class="material-symbols-outlined text-sm">bolt</span>
+          </div>
+          <div class="absolute top-10 right-12 w-7 h-7 bg-[#251913]/10 border border-[#251913]/10 rounded-full flex items-center justify-center text-[#251913] text-xs font-bold shadow-sm animate-bounce" style="animation-duration: 4s;">
+            <span class="material-symbols-outlined text-xs">schedule</span>
+          </div>
+        </div>
+
+        <p class="font-body-md text-xs text-[#251913]/50 mt-2">
+          Identifica combinaciones idóneas según tus ingredientes actuales.
+        </p>
+      </div>
+
+      <div class="md:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        
+        <div class="sm:col-span-2 bg-[#FBF7F4] border border-[#251913]/5 p-8 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-6 min-h-[180px] hover:-translate-y-1 transition-all duration-300">
+          <div class="max-w-xs text-center sm:text-left">
+            <h3 class="font-headline-md text-lg font-bold text-[#251913] tracking-tight mb-2">
+              Control de gastos
+            </h3>
+            <p class="font-body-md text-xs text-[#251913]/70 leading-relaxed">
+              Optimiza la cesta de la compra, realiza un seguimiento inteligente de presupuestos y evita comprar duplicados.
+            </p>
+          </div>
+          <div class="flex-shrink-0 relative w-32 h-24 bg-white border border-[#251913]/10 rounded-xl flex items-center justify-center shadow-xs">
+            <div class="w-20 h-14 bg-secondary rounded-lg shadow-sm relative flex items-center justify-center">
+              <span class="material-symbols-outlined text-white text-xl">wallet</span>
+              <div class="absolute -top-3 right-2 w-10 h-7 bg-primary rounded-md shadow-xs border border-white/50 flex items-center justify-center transform rotate-12">
+                <span class="text-[8px] font-bold text-white">-30%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#251913]/5 p-6 rounded-2xl flex flex-col justify-between min-h-[180px] group hover:-translate-y-1 transition-all duration-300 shadow-xs">
+          <div>
+            <h3 class="font-headline-md text-base font-bold text-[#251913] tracking-tight mb-1">
+              Fija tus Metas
+            </h3>
+            <p class="font-body-md text-[11px] text-[#251913]/60 leading-relaxed">
+              Establece objetivos mensuales de reducción de residuos orgánicos en el hogar.
+            </p>
+          </div>
+          <div class="flex justify-center items-center py-2 relative">
+            <div class="w-16 h-16 rounded-full border-4 border-primary/30 flex items-center justify-center relative bg-[#FBF7F4]">
+              <div class="w-10 h-10 rounded-full border-4 border-primary/50 flex items-center justify-center bg-white">
+                <div class="w-4 h-4 rounded-full bg-primary"></div>
+              </div>
+              <div class="absolute -bottom-2 -left-2 w-12 h-0.5 bg-[#251913] transform rotate-45 origin-left after:content-[''] after:absolute after:right-0 after:-top-1 after:border-4 after:border-transparent after:border-l-[#251913] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-[#251913]/5 p-6 rounded-2xl flex flex-col justify-between min-h-[180px] hover:-translate-y-1 transition-all duration-300 shadow-xs">
+          <div>
+            <h3 class="font-headline-md text-base font-bold text-[#251913] tracking-tight mb-1">
+              Menús Premium
+            </h3>
+            <p class="font-body-md text-[11px] text-[#251913]/60 leading-relaxed">
+              Accede a la biblioteca gastronómica gourmet adaptada a tus electrodomésticos.
+            </p>
+          </div>
+          <div class="flex flex-col gap-1.5 items-center justify-center py-2">
+            <div class="w-24 bg-primary text-white text-[9px] font-bold py-1.5 px-2.5 rounded-md flex items-center justify-between shadow-xs">
+              <span>RECETAS TOP</span>
+              <span class="material-symbols-outlined text-[10px]">arrow_right_alt</span>
+            </div>
+            <div class="w-24 bg-[#251913] text-white text-[9px] font-bold py-1.5 px-2.5 rounded-md flex items-center justify-between shadow-xs">
+              <span class="material-symbols-outlined text-[10px] transform rotate-180">arrow_right_alt</span>
+              <span>REPOSTERÍA</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="md:col-span-7 bg-white border border-[#251913]/5 p-8 rounded-2xl flex flex-col sm:flex-row justify-between items-center gap-6 min-h-[220px] hover:-translate-y-1 transition-all duration-300 shadow-xs">
+        <div class="max-w-sm">
+          <h3 class="font-headline-md text-lg font-bold text-[#251913] tracking-tight mb-3">
+            Estrategia de alimentación semanal
+          </h3>
+          <p class="font-body-md text-xs text-[#251913]/70 leading-relaxed">
+            Un plan personalizado basado en el ciclo de vida de tus alimentos frescos. El algoritmo predice qué va a caducar primero y diseña el menú en torno a ello para garantizar desperdicio cero.
+          </p>
+        </div>
+        <div class="flex-shrink-0 w-44 h-28 bg-[#FBF7F4] border border-[#251913]/5 rounded-xl p-3 flex flex-col justify-between shadow-inner relative overflow-hidden">
+          <div class="flex gap-1.5 items-end h-14 border-b border-[#251913]/10 pb-1">
+            <div class="w-3 bg-primary h-8 rounded-t-xs"></div>
+            <div class="w-3 bg-secondary h-12 rounded-t-xs"></div>
+            <div class="w-3 bg-primary h-6 rounded-t-xs"></div>
+            <div class="w-3 bg-primary/40 h-14 rounded-t-xs"></div>
+            <div class="w-3 bg-[#251913]/20 h-10 rounded-t-xs"></div>
+          </div>
+          <div class="flex justify-between items-center text-[8px] font-bold text-primary">
+            <span>Métrica de Ahorro</span>
+            <span class="material-symbols-outlined text-sm animate-spin" style="animation-duration: 12s;">settings</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-5 bg-[#FBF7F4] border border-[#251913]/5 p-8 rounded-2xl flex flex-col justify-between min-h-[220px] group hover:-translate-y-1 transition-all duration-300">
+        <div>
+          <h3 class="font-headline-md text-lg font-bold text-[#251913] tracking-tight mb-2">
+            Encuentra y cocina al instante
+          </h3>
+          <p class="font-body-md text-xs text-[#251913]/70 leading-relaxed">
+            Introduce ingredientes sueltos y descubre platos idóneos en cuestión de segundos.
+          </p>
+        </div>
+        
+        <div class="w-full bg-white rounded-xl p-2.5 shadow-xs border border-[#251913]/10 mt-4 flex items-center justify-between transition-all group-hover:border-primary/40">
+          <div class="flex items-center gap-2 text-xs text-[#251913]/40">
+            <span class="material-symbols-outlined text-sm text-primary">search</span>
+            <span class="font-medium italic text-[11px]">¿Qué tienes en tu nevera?...</span>
+          </div>
+          <div class="bg-primary text-white px-3 py-1.5 rounded-lg text-[10px] font-bold tracking-tight shadow-xs cursor-pointer hover:bg-primary/90 transition-colors">
+            Buscar
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Recipe Explorer -->
+<section class="py-xl bg-surface">
+<div class="max-w-container-max mx-auto px-gutter">
+<div class="flex justify-between items-end mb-xl reveal">
+<div>
+<h2 class="font-headline-lg text-headline-lg">Explora nuevas ideas</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Basadas en lo que la comunidad está cocinando hoy.</p>
+</div>
+<button class="text-primary font-label-md flex items-center gap-base hover:gap-sm transition-all">
+                        Ver todas <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Recipe Card 1 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="A delicious bowl of Mediterranean Buddha Bowl with chickpeas, avocado, and quinoa. Colorful presentation with soft focus background of a modern kitchen. High-quality food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8IjyKgTNNMiS-nxXn0enXUZLwFoPGjPzOlpouDRwg3rVb1SkAYg9T9GeI22AjY0NqKVx_H-xiUctCkjVyXQlG1KEWCO3SKla7HsU-Vvhatic6BoBZJ3bXjBDA0Ig_NjfcFbAXdW_ERe_BwdWcCCkOrMbTpIHxGNmi3e-yHPWPTeodJhAnkB9MTWvMAtv9nyW96fOcgbsn1qrMBv1IXxNZdhtgEtiJV-HQXXBMXiJ1LNQove6adN7oVEJL2PoO_ZKWlpahL8qlA"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">98% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Buddha Bowl Mediterráneo</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 15 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 2 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 100ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Creamy pumpkin soup served in a ceramic bowl with toasted pumpkin seeds on top. Warm autumn lighting, cozy kitchen atmosphere, minimalist presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJeQfj9_f2JW1wgZjrrLMB71-KfKfPqtnZrr8d909kGtnjG4VLEgrYHSrlWQV8c9ENNK2TCDdTwt5XNsOhmx54nm1zr1HLV-Go1Uve6U6O-wn7WjYcgv82M8f2TRQ8Zj6IyQkrB6OQEqkDjSO-hOSrF24JOCax-6FwneUc_UXlZpUGu46Hh6kmd6aR3DqEtiNhswi22NBckD-trkr2bIicrvGpfHGngHteD9lmW_xvB1Bz5Z4eLrnBfTpGmfVcblRUPL_jqj-JA"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">85% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Crema de Calabaza y Jengibre</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 25 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Medio</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 3 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 200ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Authentic Italian pasta carbonara with pancetta and black pepper. Golden lighting, rustic wooden table background, high contrast food styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSObZDt6QOVipKg1ARokjoc-Am7Sg0_zlBMD_XBq_Is3618YH8EJXiD1XjzUXe1tvP6aiscSbbTfZmbcIgT1aT9ws4Vj1fT2jAdHJN6PDaxvvDwnaav-sesc17BPRE2ZHYQbU5ob-qqwP0XaVxDwYsqImnfbFlMOTlgaO5auIZZr19OF1R-X5R0gridycCMJ9DpZJmGwpiATwnXlAZV9R2b8q6w1C4UKlQWQRnRsz3eWL8Q9GuDb9mAFtL768N-1-joDR1BSyyXg"/>
+<div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full">Top Pick</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Pasta Carbonara Clásica</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 20 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+<!-- Recipe Card 4 -->
+<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 300ms;">
+<div class="h-48 relative">
+<img class="w-full h-full object-cover" data-alt="Fresh salmon poke bowl with edamame, seaweed, and sesame seeds. Bright, vibrant colors, clean studio lighting, modern healthy food presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tKeF8SF6HJdPewBw9az0UwrQeWdlfFS7w11T153q8rTtkmKM0Exy3R035mLYL-BiYZikIjXFB3RtJ3bsXpdYMtDjtfVbWr-xSUsp8gqYkHqD2w065Q2iuPMe7Rk48lBwdmyzTVRHrhBFu3kslwCZgnzNPlvkP6C1Z_o8lKkjaZTI9qCTlwaKm47i8fLzksAV9HAd_U0MCVaQ0u2WDVk_e6yALyqF4TbIT8-oufsWSGNY6xVgXn5i44tleGI2a0ufrkMnXL-vfQ"/>
+<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">92% Match</div>
+</div>
+<div class="p-md">
+<h4 class="font-headline-md text-[18px] mb-xs">Poke Bowl de Salmón</h4>
+<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 10 min</span>
+<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Final CTA -->
+ <section id="cta" class="bg-transparent reveal">
+    <div class="mx-auto max-w-7xl py-12 sm:px-6 sm:py-24 lg:px-8">
+        <div class="relative isolate overflow-hidden bg-[#251913] px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+
+            <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0">
+                <circle r="512" cx="512" cy="512" fill="url(#cooker-gradient)" fill-opacity="0.6" />
+                <defs>
+                <radialGradient id="cooker-gradient">
+                    <stop stop-color="#9d4300" />
+                    <stop offset="1" stop-color="#006c49" />
+                </radialGradient>
+                </defs>
+            </svg>
+
+            <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                <h2 class="font-headline-lg text-headline-lg text-white mb-md">
+                ¿Listo para revolucionar tu cocina?
+                </h2>
+                <p class="font-body-md text-body-md text-surface-variant/80 mb-lg">
+                Únete a miles de personas que ya están ahorrando tiempo y dinero transformando sus ingredientes en platos deliciosos con COOKER.
+                </p>
+                <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                <a href="app.html" class="rounded-[10px] bg-primary text-white h-[48px] px-lg flex items-center justify-center font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-md">
+                    Empezar a cocinar ahora
+                </a>
+                <a href="#how-it-works" class="font-label-md text-sm text-white hover:text-surface-variant transition-colors flex items-center gap-1">
+                    Ver cómo funciona <span aria-hidden="true">→</span>
+                </a>
+                </div>
+            </div>
+
+            <div class="relative mt-16 h-80 lg:mt-8 flex-1">
+                <img width="1824" height="1080" src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png" alt="COOKER App Screenshot" class="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" />
+            </div>
+
+        </div>
+    </div>
+ </section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-[#251913] text-on-surface border-t border-outline-variant/20 pt-16 pb-12 font-label-md text-sm">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+      
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-3 text-white text-xl font-bold tracking-tight font-headline-md">
+          <img src="assets/logo footer.png" alt="Logo COOKER" class="w-7 h-7 rounded" />
+          <span>COOKER</span>
+        </div>
+        <p class="text-white/60 text-xs max-w-xs leading-relaxed">
+          Tu asistente culinario inteligente para un hogar más sostenible.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Plataforma</h4>
+        <ul class="text-white flex flex-col gap-3 text-on-surface-variant/80">
+          <li><a href="#how-it-works" class="text-white hover:text-primary transition-colors">Cómo funciona</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Recetas</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Planes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Empresa</h4>
+        <ul class="text-white flex flex-col gap-3 text-on-surface-variant/80">
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Privacidad</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Términos</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Soporte</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Contacto</h4>
+        <ul class="text-white flex flex-col gap-2 text-on-surface-variant/80">
+          <li><a href="mailto:hola@cooker.app" class="text-white hover:text-primary transition-colors">hola@cooker.app</a></li>
+          <li class="text-white text-xs text-on-surface-variant/50 mt-1">Barcelona, España</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-semibold text-on-surface mb-2">Descarga la App</h4>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-2">
+          
+          <a href="#" class="text-black flex items-center gap-3 border border-on-surface/10 hover:border-on-surface/30 bg-[#fff8f6] text-black rounded-xl py-2 px-3 transition-all duration-200 max-w-[155px]">
+            <i class="fa-solid fa-download"></i>
+            <div class="flex flex-col leading-none">
+              <span class="text-[9px] text-black/60 tracking-wide font-light">Consíguelo en el</span>
+              <span class="text-black text-xs font-semibold font-headline-md mt-0.5">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full h-[1px] bg-on-surface/[0.08] mb-6"></div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant/50">
+      
+      <div class="text-white">
+        Copyright © 2026 COOKER. Todos los derechos reservados.
+      </div>
+      
+      <div class="flex items-center gap-5 text-on-surface/80">
+        <a href="#" class="hover:text-primary transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31 0 2.58.33 3.7.94a5.61 5.61 0 0 1-1.12 3.16 5.56 5.56 0 0 1-3.19 1.95v3.62c2.05-.12 3.96.69 5.3 2.15a6.52 6.52 0 0 1 1.76 4.54c0 3.63-2.94 6.58-6.57 6.58-3.63 0-6.58-2.95-6.58-6.58 0-3.32 2.46-6.07 5.66-6.51V2.83c-1.58.35-3 .98-4.14 1.87A6.52 6.52 0 0 0 5 9.4c0 3.63 2.95 6.58 6.58 6.58s6.58-2.95 6.58-6.58c0-.66-.1-1.3-.29-1.9a5.53 5.53 0 0 1-3.21-3.95c.78-.1 1.5-.4 2.12-.86A5.57 5.57 0 0 0 19 1.15a6.6 6.6 0 0 0-4.06-1.11H12.525z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+<script>
+  // =========================================================================
+// 1. INTERSECTION OBSERVER: ANIMACIONES AL HACER SCROLL (REVEAL)
+// =========================================================================
+const observerOptions = {
+    threshold: 0.15,        // El elemento debe estar visible un 15% para activarse
+    rootMargin: '0px 0px -60px 0px'
+};
+
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Opcional: Si no quieres que se vuelva a ocultar al subir, puedes dejar de observarlo:
+            // revealObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+// =========================================================================
+// 2. SCROLLSPY & NAVBAR DINÁMICO: ILUMINAR MENÚ SEGÚN LA SECCIÓN ACTUAL
+// =========================================================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const navbar = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+    let currentSectionId = '';
+    const scrollPosition = window.scrollY + 150; // Ajuste para detectar la sección antes de llegar arriba
+
+    // A) Control de opacidad y sombra del Navbar flotante al hacer scroll
+    if (window.scrollY > 30) {
+        navbar.classList.remove('bg-surface/80');
+        navbar.classList.add('bg-surface/95', 'shadow-xl', 'py-2');
+    } else {
+        navbar.classList.remove('bg-surface/95', 'shadow-xl', 'py-2');
+        navbar.classList.add('bg-surface/80');
+    }
+
+    // B) Detectar qué sección está cruzando el Viewport
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+
+    // C) Intercambiar clases de Tailwind para resaltar el enlace activo
+    navLinks.forEach(link => {
+        link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+        link.classList.add('text-on-surface-variant');
+
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.remove('text-on-surface-variant');
+            link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+        }
+    });
+});
+
+
+// =========================================================================
+// 3. MICRO-INTERACCIONES: EFECTO 3D SUTIL (TILT) EN LAS TARJETAS
+// =========================================================================
+document.querySelectorAll('.card-shadow').forEach(card => {
+    // Aseguramos una transición fluida al entrar y salir
+    card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
+
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        // Calculamos la posición del cursor dentro de la tarjeta (-1 a 1)
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Multiplicamos para obtener los grados de rotación (efecto inclinación sutil)
+        card.style.transform = `perspective(1000px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateY(-6px)`;
+        card.style.boxShadow = '0 15px 35px rgba(31, 41, 55, 0.12)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        // Al retirar el cursor, la tarjeta regresa suavemente a su posición original
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        card.style.boxShadow = '0 4px 20px rgba(31, 41, 55, 0.06)';
+    });
+});
+
+
+// =========================================================================
+// 4. FUNCIONALIDAD EXTRA: CONTROLADOR INTERACTIVO DE RECETAS (MATCH SYSTEM)
+// =========================================================================
+// Hacemos que al pulsar sobre las etiquetas de "Match %" se simule una acción
+document.querySelectorAll('.absolute.top-sm.right-sm').forEach(tag => {
+    tag.style.cursor = 'pointer';
+    tag.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita conflictos con otros clics
+        const recipeName = tag.closest('.bg-surface').querySelector('h4').innerText;
+        
+        // Creamos una pequeña notificación flotante temporal
+        const toast = document.createElement('div');
+        toast.className = "fixed bottom-6 right-6 bg-secondary text-white px-md py-sm rounded-xl shadow-2xl z-50 animate-bounce font-label-md";
+        toast.innerHTML = `✨ ¡Tienes todos los ingredientes para: <b>${recipeName}</b>!`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 3500);
+    });
+});
+</script>
+</body></html>

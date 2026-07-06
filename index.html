@@ -3,11 +3,19 @@
 <html class="scroll-smooth" lang="es"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>COOKER | Tu asistente culinario inteligente</title>
+<title>COOKER</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Plus+Jakarta+Sans:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100..900&family=Inter:wght@100..900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/styles.css">
+<!--FAVICONS-->
+<link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg" />
+<link rel="shortcut icon" href="assets/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="MyWebSite" />
+<link rel="manifest" href="assets/favicon/site.webmanifest" />
+<!--FAVICONS ENDS-->
+<script src="https://kit.fontawesome.com/7405686940.js" crossorigin="anonymous"></script>
 <script id="tailwind-config">
       tailwind.config = {
         darkMode: "class",
@@ -66,6 +74,9 @@
                     "DEFAULT": "0.25rem",
                     "lg": "0.5rem",
                     "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "4xl": "2rem",
                     "full": "9999px"
             },
             "spacing": {
@@ -100,297 +111,2107 @@
         },
       }
     </script>
-<style>
-        body { background-color: #FFFBEB; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .card-shadow { box-shadow: 0 4px 20px rgba(31, 41, 55, 0.06); }
-        .card-shadow:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(31, 41, 55, 0.1); }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-    </style>
 </head>
 <body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
 <!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto bg-surface shadow-sm">
-<div class="text-headline-md font-headline-md font-bold text-primary tracking-tight">COOKER</div>
-<div class="hidden md:flex gap-md items-center font-body-md text-body-md">
-<a class="text-primary font-bold border-b-2 border-primary hover:opacity-80 transition-all duration-200" href="#">Cómo funciona</a>
-<a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#">Beneficios</a>
-<a class="text-on-surface-variant hover:text-primary transition-all duration-200" href="#">App</a>
-</div>
-<button class="bg-primary text-on-primary px-md py-2 rounded-lg font-label-md text-label-md hover:opacity-80 transition-all duration-200 active:scale-95">
-            Empezar
-        </button>
+<nav class="fixed top-4 left-4 right-4 z-50 max-w-[1200px] mx-auto flex justify-between items-center px-6 py-3 bg-surface/80 backdrop-blur-md border border-outline-variant/20 rounded-full shadow-lg transition-all duration-300">
+  
+  <div class="flex items-center text-headline-md font-headline-md font-bold text-primary tracking-tight h-10">
+    COOKER
+  </div>
+  
+  <div class="hidden md:flex gap-md items-center justify-center font-body-md text-body-md h-10">
+    <a class="text-primary font-bold border-b-2 border-primary hover:opacity-80 transition-all duration-200 py-1" href="#how-it-works">Cómo funciona</a>
+    <a class="text-on-surface-variant hover:text-primary transition-all duration-200 py-1" href="#benefits">Beneficios</a>
+    <a class="text-on-surface-variant hover:text-primary transition-all duration-200 py-1" href="#cta">App</a>
+  </div>
+  
+  <div class="flex items-center gap-3 h-10">
+    <!-- Enlace Iniciar sesión -> auth.html?mode=login -->
+    <a href="auth.html?mode=login" class="hidden md:inline-flex items-center justify-center border border-primary/30 hover:border-primary text-primary bg-transparent px-5 py-2 rounded-full font-label-md text-label-md transition-all duration-200 active:scale-95 h-9">
+      Iniciar sesión
+    </a>
+    <!-- Botón Empezar -> auth.html?mode=register -->
+    <a href="auth.html?mode=register" class="hidden sm:inline-flex bg-primary text-on-primary px-5 py-2 rounded-full font-label-md text-label-md hover:opacity-80 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2 h-9">
+      <i class="fa-solid fa-location-arrow text-xs"></i> <span>Empezar</span>
+    </a>
+    
+    <button id="menu-toggle" class="md:hidden flex items-center justify-center w-10 h-10 text-on-surface hover:text-primary transition-colors focus:outline-none" aria-label="Abrir menú">
+      <span class="material-symbols-outlined text-2xl" aria-hidden="true">menu</span>
+    </button>
+  </div>
 </nav>
-<main class="pt-24 overflow-x-hidden">
+
+<div id="mobile-menu" class="fixed inset-x-0 top-0 pt-24 px-6 pb-8 bg-surface/95 backdrop-blur-md border-b border-outline-variant/20 shadow-xl z-40 -translate-y-full opacity-0 transition-all duration-300 md:hidden">
+  <div class="flex flex-col gap-4 text-center">
+    <a class="text-primary font-bold text-body-md py-2 border-b border-outline-variant/10" href="#how-it-works">Cómo funciona</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors text-body-md py-2 border-b border-outline-variant/10" href="#benefits">Beneficios</a>
+    <a class="text-on-surface-variant hover:text-primary transition-colors text-body-md py-2 border-b border-outline-variant/10" href="#cta">App</a>
+    
+    <div class="flex flex-col gap-2 mt-2">
+      <!-- Enlace móvil Iniciar sesión -->
+      <a href="auth.html?mode=login" class="text-primary border border-primary/30 py-3 rounded-xl font-label-md text-center transition-colors hover:bg-primary/5">
+        Iniciar sesión
+      </a>
+      <!-- Enlace móvil Empezar gratis -->
+      <a href="auth.html?mode=register" class="bg-primary text-on-primary py-3 rounded-xl font-label-md text-center shadow-md">
+        Empezar gratis
+      </a>
+    </div>
+  </div>
+</div>
+<main>
 <!-- Hero Section -->
-<section class="relative px-gutter py-xl flex flex-col lg:flex-row items-center gap-xl max-w-container-max mx-auto">
-<div class="flex-1 reveal active text-center lg:text-left">
-<h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-md">
-                    Cocina de forma inteligente, <span class="text-primary">sin desperdicios.</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-lg max-w-xl mx-auto lg:mx-0">
-                    COOKER transforma los ingredientes que ya tienes en tu nevera en recetas deliciosas y saludables en cuestión de segundos.
-                </p>
-<div class="flex flex-col sm:flex-row gap-sm justify-center lg:justify-start">
-<a class="bg-primary text-on-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-lg" href="app.html">
-                        Probar ahora
-                    </a>
-<a class="border-2 border-primary text-primary h-[48px] px-lg flex items-center justify-center rounded-[10px] font-label-md transition-all duration-200 hover:bg-primary/5 active:scale-95" href="#how-it-works">
-                        Ver cómo funciona
-                    </a>
-</div>
-</div>
-<div class="flex-1 reveal active">
-<div class="relative w-full aspect-square md:aspect-video lg:aspect-square bg-surface-container rounded-[24px] overflow-hidden card-shadow">
-<img class="w-full h-full object-cover" data-alt="A top-down view of a modern, bright kitchen counter featuring a tablet displaying the COOKER app interface. Around the tablet are fresh vegetables like bell peppers, spinach, and tomatoes, neatly arranged. The lighting is bright and natural, emphasizing a clean and organized culinary environment with warm orange accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9IlQRF_4j-xRZycnWo_PHiDG1Uvycx5K-9l0TQAG1AAdKh_L3abShZlU37bWYXxkGgiCxNHDh5tNkYQEDcu3xFETVcDslf1kUyOsEWAvYZ5vmTvY9r0ToaPPhrLqMSzNjECazEUsw8Sqaq2vcQz5HGi7cF3IhYEggj3lBCPzKnt14C-I_vAUmZ7P95vEx5lgVerubRb2ZHYQ-Zu9N1RIRBu6RiEYhCyL4YX8ZVC-6hfj4FphwIv4iKSsVtOwbQmhPoRvteghOWQ"/>
-</div>
-</div>
+<section class="relative min-h-[100vh] grid grid-cols-1 lg:grid-cols-2 items-stretch overflow-hidden" id="hero">
+  
+  <div class="reveal active flex flex-col justify-center items-center lg:items-start text-center lg:text-left px-6 py-12 sm:px-12 lg:pl-24 lg:pr-12 z-20">
+    <div class="max-w-xl">
+      <h1 class="font-display-lg text-display-lg md:text-display-lg text-on-surface mb-md">
+        Cocina de forma inteligente, <span class="text-primary">sin desperdicios.</span>
+      </h1>
+      <p class="font-body-lg text-body-lg text-on-surface-variant mb-lg">
+        COOKER transforma los ingredientes que ya tienes en tu nevera en recetas deliciosas y saludables en cuestión de segundos.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-sm justify-center lg:justify-start">
+        <!-- Botón Probar ahora -> auth.html?mode=register -->
+        <a class="bg-primary text-on-primary h-[48px] px-lg flex items-center justify-center rounded-xl font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-lg" href="auth.html?mode=register">
+          Probar ahora
+        </a>
+        <a class="border-2 border-primary text-primary h-[48px] px-lg flex items-center justify-center rounded-xl font-label-md transition-all duration-200 hover:bg-primary/5 active:scale-95" href="#how-it-works">
+          Ver cómo funciona
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="relative min-h-[350px] lg:min-h-full w-full overflow-hidden reveal active z-10">
+    
+    <div class="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-[#FFFBEB] via-[#FFFBEB]/90 via-40% to-transparent z-20 hidden lg:block"></div>
+  
+    <div class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#FFFBEB] via-[#FFFBEB]/90 via-30% to-transparent z-20 lg:hidden"></div>
+
+    <video class="absolute inset-0 w-full h-full object-cover" autoplay loop muted playsinline preload="auto">
+      <source src="assets/video_hero.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+
 </section>
+
 <!-- How It Works -->
-<section class="py-xl bg-surface-container-low" id="how-it-works">
-<div class="max-w-container-max mx-auto px-gutter">
-<div class="text-center mb-xl reveal">
-<h2 class="font-headline-lg text-headline-lg text-on-surface">Cómo funciona COOKER</h2>
-<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Tres pasos simples para una mejor alimentación.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
-<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal">
-<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-md">
-<span class="material-symbols-outlined text-on-primary-container text-3xl">inventory_2</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-sm">Añade tus ingredientes</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Escanea o escribe lo que tienes en tu despensa y nevera.</p>
-</div>
-<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal" style="transition-delay: 100ms;">
-<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-md">
-<span class="material-symbols-outlined text-on-secondary-container text-3xl">restaurant_menu</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-sm">Elige una receta</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Nuestro algoritmo sugiere platos basados en tus gustos y existencias.</p>
-</div>
-<div class="bg-surface p-lg rounded-xl text-center card-shadow reveal" style="transition-delay: 200ms;">
-<div class="w-16 h-16 bg-tertiary-container rounded-full flex items-center justify-center mx-auto mb-md">
-<span class="material-symbols-outlined text-on-tertiary-container text-3xl">eco</span>
-</div>
-<h3 class="font-headline-md text-headline-md mb-sm">Cocina sin desperdicio</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Sigue las instrucciones guiadas y ahorra dinero reduciendo desechos.</p>
-</div>
-</div>
-</div>
+<section class="py-32 bg-[#FBF7F4] relative overflow-hidden" id="how-it-works">
+  
+  <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
+  <div class="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-secondary/5 rounded-full blur-3xl -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-24 reveal">
+      <div class="inline-flex items-center gap-2 border border-[#251913]/10 bg-white rounded-full px-5 py-2 text-xs font-bold tracking-widest text-primary uppercase mb-5 shadow-sm">
+        <span class="material-symbols-outlined text-sm">cooking</span> El método cooker
+      </div>
+      <h2 class="font-headline-lg text-4xl sm:text-5xl font-extrabold text-[#251913] tracking-tight max-w-3xl mx-auto leading-[1.15]">
+        Tu camino hacia una cocina inteligente
+      </h2>
+      <p class="font-body-md text-base sm:text-lg text-[#251913]/70 mt-4 max-w-2xl mx-auto leading-relaxed">
+        Descubre cómo COOKER transforma tu rutina culinaria diaria eliminando por completo la indecisión y reduciendo el desperdicio en tu hogar.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 relative">
+      
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-4xl flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">01</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Uno</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Crea tu perfil</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Configura tus preferencias alimenticias, intolerancias y objetivos de ahorro en menos de un minuto de forma gratuita y personalizada.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col gap-3 justify-center shadow-inner relative overflow-hidden">
+            <div class="w-full bg-white border border-[#251913]/10 rounded-xl p-3 text-xs text-[#251913]/50 flex items-center gap-2 shadow-sm">
+              <span class="material-symbols-outlined text-sm text-[#251913]/40">mail</span> tu-correo@cooker.com
+            </div>
+            <div class="w-full bg-primary text-white text-center rounded-xl py-3 text-xs font-bold shadow-md hover:bg-primary/90 transition-colors cursor-pointer">
+              Empezar gratis
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-4xl flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 100ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">02</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Dos</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Sube tu despensa</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Dicta por voz, escribe o toma una foto a tus ingredientes actuales. La inteligencia artificial integrada de COOKER los catalogará al instante.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col gap-2.5 justify-center shadow-inner">
+            <div class="flex items-center justify-between bg-white border border-[#251913]/5 rounded-xl p-2.5 text-xs text-[#251913]/80 shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check_circle</span> 
+                <span class="font-medium">Tomates</span>
+              </div>
+              <span class="text-[11px] text-[#251913]/40 bg-[#251913]/5 px-2 py-0.5 rounded-md">4 uds</span>
+            </div>
+            <div class="flex items-center justify-between bg-white border border-[#251913]/5 rounded-xl p-2.5 text-xs text-[#251913]/80 shadow-sm">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-base">check_circle</span> 
+                <span class="font-medium">Pechuga de Pollo</span>
+              </div>
+              <span class="text-[11px] text-[#251913]/40 bg-[#251913]/5 px-2 py-0.5 rounded-md">500g</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-4xl flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 200ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">03</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Tres</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Elige tu receta</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              El sistema calcula combinaciones idóneas según el vencimiento de tus productos frescos y te sugiere menús balanceados al momento.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex items-center justify-between shadow-inner relative overflow-hidden">
+            <div class="flex flex-col gap-1">
+              <span class="text-xs font-bold text-[#251913] leading-tight">Wok de Pollo Sostenible</span>
+              <span class="text-[10px] text-[#251913]/50 flex items-center gap-1 mt-0.5">
+                <span class="material-symbols-outlined text-[12px] text-primary">schedule</span> 15 min • Muy Fácil
+              </span>
+            </div>
+            <div class="w-12 h-12 bg-primary/10 border border-primary/20 rounded-full flex flex-col items-center justify-center text-primary shadow-sm flex-shrink-0">
+              <span class="text-xs font-extrabold leading-none">98%</span>
+              <span class="text-[7px] font-semibold tracking-tighter uppercase mt-0.5">Match</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-[#251913]/5 p-8 sm:p-10 rounded-4xl flex flex-col justify-between gap-8 card-shadow reveal relative group hover:-translate-y-2 transition-all duration-300 shadow-[0_15px_40px_rgba(37,25,19,0.03)]" style="transition-delay: 300ms;">
+        <div class="absolute top-4 right-8 text-8xl font-black text-[#251913]/5 select-none font-headline-md group-hover:text-primary/10 transition-colors">04</div>
+        
+        <div class="flex flex-col lg:flex-row items-center gap-8 w-full mt-4">
+          <div class="w-full lg:w-1/2 flex flex-col justify-center">
+            <span class="text-xs font-bold text-primary tracking-widest uppercase block mb-2">Paso Cuatro</span>
+            <h3 class="font-headline-md text-2xl font-bold text-[#251913] mb-3">Cero desperdicios</h3>
+            <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+              Cocina con instrucciones guiadas e intuitivas, ahorrando significativamente en tu compra mensual y reduciendo la huella de carbono hogareña.
+            </p>
+          </div>
+          <div class="w-full lg:w-1/2 bg-[#FBF7F4] border border-[#251913]/5 rounded-2xl p-6 min-h-[140px] flex flex-col justify-center gap-2.5 shadow-inner">
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] font-bold shadow-sm flex-shrink-0">1</div>
+              <p class="text-[11px] text-[#251913]/80 font-medium truncate">Trocea los tomates e introduce el pollo...</p>
+            </div>
+            <div class="w-full bg-[#251913]/10 h-2 rounded-full overflow-hidden shadow-xs">
+              <div class="bg-gradient-to-r from-primary to-primary/80 w-1/2 h-full rounded-full"></div>
+            </div>
+            <div class="flex justify-between text-[9px] text-[#251913]/40 font-semibold uppercase tracking-wider px-0.5">
+              <span>Progreso de receta</span>
+              <span>50%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </section>
-<!-- Benefits: Bento Grid -->
-<section class="py-xl px-gutter max-w-container-max mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
-<div class="md:col-span-8 bg-primary-container/20 p-lg rounded-xl reveal flex flex-col justify-center min-h-[300px]">
-<span class="bg-primary text-on-primary w-fit px-sm py-1 rounded-full text-label-md font-label-md mb-md">EFICIENCIA</span>
-<h3 class="font-headline-lg text-headline-lg mb-md">Reduce la indecisión diaria</h3>
-<p class="font-body-lg text-body-lg text-on-surface-variant">No más tiempo perdido frente a la nevera abierta. COOKER decide por ti analizando perfiles nutricionales y tiempo disponible.</p>
-</div>
-<div class="md:col-span-4 bg-secondary-container/20 p-lg rounded-xl reveal flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-secondary text-5xl mb-md">savings</span>
-<h3 class="font-headline-md text-headline-md mb-sm">Ahorra hasta un 30%</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Optimiza tus compras y usa hasta el último ingrediente antes de que caduque.</p>
-</div>
-<div class="md:col-span-4 bg-tertiary-container/20 p-lg rounded-xl reveal flex flex-col items-center justify-center text-center">
-<span class="material-symbols-outlined text-tertiary text-5xl mb-md">delete_sweep</span>
-<h3 class="font-headline-md text-headline-md mb-sm">Cero desperdicio</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Contribuye al planeta mientras disfrutas de platos gourmet en casa.</p>
-</div>
-<div class="md:col-span-8 bg-surface-container-highest p-lg rounded-xl reveal flex items-center gap-md">
-<div class="hidden sm:block w-32 h-32 rounded-lg overflow-hidden shrink-0">
-<img class="w-full h-full object-cover" data-alt="A macro photography shot of colorful, fresh sliced citrus fruits and herbs on a pristine white marble surface. High-key lighting highlights the vibrant textures and colors, aligning with a fresh and professional culinary aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDWsIvK8rl0_zumCZtWfPoV-D209OMZO2kFAVczpZYNJCB4-TVcu07qm_QmqeYAVJtB9qVFdSf-gv63Cnl6C_6eO4SYJgWCctwLKS8LmcCp7Ji-eszkgdJrA2dGYCc0dJ9NFadJ7b1QS-zohnPW79DL3Xj5nANsdoKYux-hTgBVMUmMfb6IGfcK1yrhgo3GoSUPR1kfmRiXXhsy9ZbW18oMBU3x8CwwDSuzI85tH57ns2taT4UWgzjRcSf-hvq0R6zxJ8sY2lGaQ"/>
-</div>
-<div>
-<h3 class="font-headline-md text-headline-md mb-sm">Ingredientes de temporada</h3>
-<p class="font-body-md text-body-md text-on-surface-variant">Nuestra IA prioriza ingredientes locales y de temporada para maximizar el sabor y frescura de tus comidas.</p>
-</div>
-</div>
-</div>
+
+<!-- Benefits: Interactive Split-Screen Showcase -->
+<!-- Benefits: Ultra-Minimalist Editorial - Fixed Version -->
+<section class="py-16 md:py-20 bg-[#FBF7F4] px-4 sm:px-6 relative overflow-hidden" id="benefits">
+  
+  <!-- Subtle animated background gradient -->
+  <div class="absolute inset-0 opacity-30 pointer-events-none">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-[#251913]/5 rounded-full blur-3xl animate-blob"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-[#251913]/5 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative">
+    
+    <!-- Header Minimal -->
+    <div class="mb-12 md:mb-16 reveal">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-16 h-[1px] bg-[#251913]/30 animate-expand"></div>
+        <span class="text-xs font-medium tracking-[0.2em] uppercase text-[#251913]/50">Beneficios</span>
+      </div>
+      
+      <h2 class="font-headline-lg text-4xl md:text-6xl lg:text-7xl font-bold text-[#251913] leading-[0.95] tracking-tight mb-6 max-w-4xl">
+        Cocina mejor,<br>
+        <span class="text-[#251913]/40 inline-block animate-fade-up" style="animation-delay: 0.2s">desperdicia menos.</span>
+      </h2>
+      
+      <p class="font-body-md text-base md:text-lg text-[#251913]/60 max-w-2xl leading-relaxed animate-fade-up" style="animation-delay: 0.4s">
+        Seis razones por las que COOKER está transformando la forma en que cocinamos hoy.
+      </p>
+    </div>
+
+    <!-- Benefits Grid - Compact Bento Style -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4 mb-12 md:mb-16">
+      
+      <!-- Benefit 1: Tiempo -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="time" style="--delay: 0">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">schedule</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">01</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Tiempo libre</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">Decisiones en segundos</p>
+      </div>
+
+      <!-- Benefit 2: Ahorro -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="savings" style="--delay: 1">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">wallet</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">02</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Ahorro real</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">Hasta 30% menos</p>
+      </div>
+
+      <!-- Benefit 3: Residuos -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="goals" style="--delay: 2">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">eco</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">03</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Cero residuos</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">Reduce 80% desperdicio</p>
+      </div>
+
+      <!-- Benefit 4: Premium -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="premium" style="--delay: 3">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">restaurant_menu</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">04</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Menús premium</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">+5000 recetas gourmet</p>
+      </div>
+
+      <!-- Benefit 5: Planificación -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="planning" style="--delay: 4">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">calendar_month</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">05</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Planificación</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">Menú semanal auto</p>
+      </div>
+
+      <!-- Benefit 6: Búsqueda -->
+      <div class="benefit-card group bg-white rounded-2xl p-5 border border-[#251913]/5 hover:border-[#251913]/20 transition-all duration-500 cursor-pointer reveal" data-benefit="search" style="--delay: 5">
+        <div class="flex items-center justify-between mb-4">
+          <div class="w-10 h-10 bg-[#FBF7F4] rounded-xl flex items-center justify-center group-hover:bg-[#251913] transition-all duration-500 group-hover:scale-110">
+            <span class="material-symbols-outlined text-[#251913] group-hover:text-[#FBF7F4] transition-colors duration-500 text-lg">search</span>
+          </div>
+          <span class="text-2xl font-bold text-[#251913]/10 group-hover:text-[#251913]/30 transition-colors duration-500">06</span>
+        </div>
+        <h3 class="font-headline-md text-base font-bold text-[#251913] mb-1">Búsqueda rápida</h3>
+        <p class="font-body-md text-xs text-[#251913]/60 leading-relaxed">En menos de 3 seg</p>
+      </div>
+
+    </div>
+
+    <!-- Interactive Demo Area with Progress Bar -->
+    <div class="reveal">
+      <div class="bg-white rounded-3xl border border-[#251913]/5 overflow-hidden shadow-[0_20px_60px_rgba(37,25,19,0.04)] hover:shadow-[0_30px_80px_rgba(37,25,19,0.08)] transition-shadow duration-500">
+        
+        <!-- Progress Bar Container -->
+        <div class="flex gap-1 p-3 bg-[#FBF7F4]/50 border-b border-[#251913]/5">
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+          <div class="progress-bar flex-1 h-1 bg-[#251913]/10 rounded-full overflow-hidden">
+            <div class="progress-fill h-full bg-[#251913] rounded-full" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Demo Header (SIN "Demo interactiva") -->
+        <div class="p-6 md:p-8 border-b border-[#251913]/5">
+          <div class="flex items-center justify-between mb-4">
+            <div class="text-sm font-medium text-[#251913]/40">
+              <span id="demo-counter" class="text-[#251913] font-bold text-lg">01</span>
+              <span class="mx-1">/</span>
+              <span>06</span>
+            </div>
+          </div>
+          <h3 class="font-headline-lg text-2xl md:text-3xl font-bold text-[#251913] mb-2 transition-all duration-500" id="demo-title">
+            Decisiones en segundos
+          </h3>
+          <p class="font-body-md text-sm md:text-base text-[#251913]/60 transition-all duration-500" id="demo-subtitle">
+            Nuestra IA analiza tus ingredientes y preferencias al instante
+          </p>
+        </div>
+
+        <!-- Demo Content -->
+        <div class="p-6 md:p-8 min-h-[350px] md:min-h-[400px] relative">
+          
+          <!-- Time Demo -->
+          <div class="benefit-demo-content" data-demo="time">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <div class="mb-6">
+                  <div class="text-xs font-medium tracking-widest uppercase text-[#251913]/40 mb-3">Comparativa</div>
+                  <div class="flex items-baseline gap-3 mb-2">
+                    <span class="font-headline-lg text-5xl md:text-6xl text-[#251913]/20 line-through">15</span>
+                    <span class="text-sm text-[#251913]/40">min sin COOKER</span>
+                  </div>
+                  <div class="flex items-baseline gap-3">
+                    <span class="font-headline-lg text-5xl md:text-6xl text-[#251913]" id="time-counter">0</span>
+                    <span class="text-sm text-[#251913] font-medium">seg con COOKER</span>
+                  </div>
+                </div>
+                <p class="font-body-md text-sm text-[#251913]/60 leading-relaxed">
+                  Mientras tú decides, nuestra IA ya ha analizado <strong class="text-[#251913]">12 ingredientes</strong>, cruzado <strong class="text-[#251913]">3.400 recetas</strong> y generado la opción perfecta.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <div class="relative w-40 h-40 md:w-56 md:h-56">
+                  <svg class="absolute inset-0 w-full h-full" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="#251913" stroke-width="1" opacity="0.1"/>
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="#251913" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.2"/>
+                    <g stroke="#251913" stroke-width="1" opacity="0.3">
+                      <line x1="100" y1="15" x2="100" y2="25"/>
+                      <line x1="185" y1="100" x2="175" y2="100"/>
+                      <line x1="100" y1="185" x2="100" y2="175"/>
+                      <line x1="15" y1="100" x2="25" y2="100"/>
+                    </g>
+                  </svg>
+                  <div class="absolute inset-0">
+                    <div class="absolute left-1/2 bottom-1/2 w-[2px] bg-[#251913]/60 animate-clock-slow"
+                         style="height: 35%; margin-left: -1px; transform-origin: 50% 100%;"></div>
+                    <div class="absolute left-1/2 bottom-1/2 w-[1px] bg-[#251913] animate-clock-fast"
+                         style="height: 42%; margin-left: -0.5px; transform-origin: 50% 100%;"></div>
+                    <div class="absolute left-1/2 top-1/2 w-3 h-3 bg-[#251913] rounded-full"
+                         style="transform: translate(-50%, -50%);"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Savings Demo -->
+          <div class="benefit-demo-content hidden" data-demo="savings">
+            <div class="max-w-xl mx-auto">
+              <div class="mb-8">
+                <div class="flex justify-between items-center mb-3">
+                  <span class="text-xs font-medium tracking-widest uppercase text-[#251913]/40">Gasto mensual</span>
+                  <span class="font-headline-lg text-3xl text-[#251913]"><span id="savings-amount">250</span>€</span>
+                </div>
+                <input type="range" id="savings-slider" min="100" max="500" value="250" step="10" class="w-full h-1 bg-[#251913]/10 rounded-full appearance-none cursor-pointer accent-[#251913]">
+                <div class="flex justify-between text-xs text-[#251913]/40 mt-2">
+                  <span>100€</span><span>500€</span>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="text-center p-4 bg-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+                  <div class="text-xs font-medium text-[#251913]/50 mb-1">Sin COOKER</div>
+                  <div class="font-headline-lg text-2xl text-[#251913]/40" id="without-cooker">250€</div>
+                </div>
+                <div class="text-center p-4 bg-[#251913] text-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+                  <div class="text-xs font-medium opacity-70 mb-1">Con COOKER</div>
+                  <div class="font-headline-lg text-2xl" id="with-cooker">175€</div>
+                </div>
+              </div>
+              <div class="text-center p-4 bg-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+                <div class="text-xs font-medium text-[#251913]/50 mb-1">Ahorro anual</div>
+                <div class="font-headline-lg text-3xl text-[#251913]" id="annual-savings">900€</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Goals Demo -->
+          <div class="benefit-demo-content hidden" data-demo="goals">
+            <div class="grid grid-cols-3 gap-6 mb-6">
+              <div class="text-center">
+                <div class="relative w-20 h-20 mx-auto mb-3">
+                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="1" opacity="0.1"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="4" stroke-linecap="round"
+                            stroke-dasharray="264" stroke-dashoffset="264" class="circle-progress" data-target="53"/>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="font-headline-lg text-lg text-[#251913]">80%</span>
+                  </div>
+                </div>
+                <div class="text-xs font-medium text-[#251913]/60">Menos desperdicio</div>
+              </div>
+              <div class="text-center">
+                <div class="relative w-20 h-20 mx-auto mb-3">
+                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="1" opacity="0.1"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="4" stroke-linecap="round"
+                            stroke-dasharray="264" stroke-dashoffset="264" class="circle-progress" data-target="106"/>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="font-headline-lg text-lg text-[#251913]">60%</span>
+                  </div>
+                </div>
+                <div class="text-xs font-medium text-[#251913]/60">Menos CO₂</div>
+              </div>
+              <div class="text-center">
+                <div class="relative w-20 h-20 mx-auto mb-3">
+                  <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="1" opacity="0.1"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#251913" stroke-width="4" stroke-linecap="round"
+                            stroke-dasharray="264" stroke-dashoffset="264" class="circle-progress" data-target="79"/>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="font-headline-lg text-lg text-[#251913]">70%</span>
+                  </div>
+                </div>
+                <div class="text-xs font-medium text-[#251913]/60">Uso eficiente</div>
+              </div>
+            </div>
+            <div class="text-center p-4 bg-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+              <div class="flex items-center justify-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-[#251913]">eco</span>
+                <span class="font-headline-md text-lg font-bold text-[#251913]">12 kg de comida salvados</span>
+              </div>
+              <div class="text-xs text-[#251913]/60">Este mes con COOKER</div>
+            </div>
+          </div>
+
+          <!-- Premium Demo -->
+          <div class="benefit-demo-content hidden" data-demo="premium">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              <div class="bg-[#FBF7F4] rounded-xl p-4 aspect-square flex flex-col justify-between hover:bg-[#251913] hover:text-[#FBF7F4] transition-all duration-500 cursor-pointer hover:scale-105">
+                <div class="text-[10px] font-medium tracking-widest opacity-60">PREMIUM</div>
+                <div>
+                  <div class="font-headline-md text-sm font-bold mb-1">Risotto de setas</div>
+                  <div class="text-xs opacity-60">25 min • 4 pers</div>
+                </div>
+              </div>
+              <div class="bg-[#251913] text-[#FBF7F4] rounded-xl p-4 aspect-square flex flex-col justify-between hover:scale-105 transition-all duration-500 cursor-pointer">
+                <div class="text-[10px] font-medium tracking-widest opacity-60">CHEF</div>
+                <div>
+                  <div class="font-headline-md text-sm font-bold mb-1">Solomillo Wellington</div>
+                  <div class="text-xs opacity-60">45 min • 6 pers</div>
+                </div>
+              </div>
+              <div class="bg-[#FBF7F4] rounded-xl p-4 aspect-square flex flex-col justify-between hover:bg-[#251913] hover:text-[#FBF7F4] transition-all duration-500 cursor-pointer hover:scale-105">
+                <div class="text-[10px] font-medium tracking-widest opacity-60">VEGAN</div>
+                <div>
+                  <div class="font-headline-md text-sm font-bold mb-1">Buddha bowl</div>
+                  <div class="text-xs opacity-60">15 min • 2 pers</div>
+                </div>
+              </div>
+              <div class="bg-[#FBF7F4] rounded-xl p-4 aspect-square flex flex-col justify-between hover:bg-[#251913] hover:text-[#FBF7F4] transition-all duration-500 cursor-pointer hover:scale-105">
+                <div class="text-[10px] font-medium tracking-widest opacity-60">RÁPIDO</div>
+                <div>
+                  <div class="font-headline-md text-sm font-bold mb-1">Pasta al pesto</div>
+                  <div class="text-xs opacity-60">10 min • 2 pers</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center p-4 bg-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+              <div class="font-headline-md text-lg font-bold text-[#251913] mb-1">12 especialidades disponibles</div>
+              <div class="text-xs text-[#251913]/60">Explora todas las categorías</div>
+            </div>
+          </div>
+
+          <!-- Planning Demo -->
+          <div class="benefit-demo-content hidden" data-demo="planning">
+            <div class="grid grid-cols-7 gap-2 mb-6">
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#251913] rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#FBF7F4] text-sm">restaurant</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]">LUN</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#FBF7F4] border border-[#251913]/20 rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#251913] text-sm">restaurant</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]">MAR</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#251913] rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#FBF7F4] text-sm">restaurant</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]">MIÉ</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#FBF7F4] border border-[#251913]/20 rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#251913] text-sm">restaurant</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]">JUE</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#251913] rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#FBF7F4] text-sm">restaurant</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]">VIE</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#FBF7F4] border border-dashed border-[#251913]/20 rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#251913]/30 text-sm">add</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]/40">SÁB</div>
+              </div>
+              <div class="text-center">
+                <div class="w-10 h-10 md:w-12 md:h-12 bg-[#FBF7F4] border border-dashed border-[#251913]/20 rounded-full flex items-center justify-center mb-2 mx-auto hover:scale-110 transition-transform duration-300 cursor-pointer">
+                  <span class="material-symbols-outlined text-[#251913]/30 text-sm">auto_awesome</span>
+                </div>
+                <div class="text-[10px] font-medium text-[#251913]/40">DOM</div>
+              </div>
+            </div>
+            <div class="text-center p-4 bg-[#FBF7F4] rounded-xl hover:scale-105 transition-transform duration-300">
+              <div class="font-headline-md text-lg font-bold text-[#251913] mb-1">5 comidas planificadas</div>
+              <div class="text-xs text-[#251913]/60">Basadas en ingredientes que caducan pronto</div>
+            </div>
+          </div>
+
+          <!-- Search Demo -->
+          <div class="benefit-demo-content hidden" data-demo="search">
+            <div class="max-w-xl mx-auto">
+              <div class="bg-[#FBF7F4] rounded-xl p-4 mb-4">
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="material-symbols-outlined text-[#251913]/40 text-lg">search</span>
+                  <div class="flex-1 flex flex-wrap gap-2" id="search-tags">
+                    <span class="bg-[#251913] text-[#FBF7F4] px-2 py-0.5 rounded-full text-xs font-medium hover:scale-110 transition-transform duration-300 cursor-pointer">pollo</span>
+                    <span class="bg-[#251913] text-[#FBF7F4] px-2 py-0.5 rounded-full text-xs font-medium hover:scale-110 transition-transform duration-300 cursor-pointer">tomate</span>
+                    <span class="bg-[#251913]/70 text-[#FBF7F4] px-2 py-0.5 rounded-full text-xs font-medium hover:scale-110 transition-transform duration-300 cursor-pointer">arroz</span>
+                  </div>
+                </div>
+                <div class="text-xs text-[#251913]/50">Sugerencias: <span class="cursor-pointer hover:text-[#251913] transition-colors">albóndigas</span>, <span class="cursor-pointer hover:text-[#251913] transition-colors">calabacín</span></div>
+              </div>
+              <div class="space-y-2">
+                <div class="bg-[#FBF7F4] rounded-xl p-3 flex items-center gap-3 hover:bg-[#251913] hover:text-[#FBF7F4] transition-all duration-500 cursor-pointer group hover:translate-x-2">
+                  <div class="w-8 h-8 bg-[#251913] group-hover:bg-[#FBF7F4] rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-500">
+                    <span class="material-symbols-outlined text-[#FBF7F4] group-hover:text-[#251913] text-sm transition-colors duration-500">local_fire_department</span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-headline-md text-sm font-bold mb-0.5">Pollo al tomate con arroz</div>
+                    <div class="text-xs opacity-60">98% match • 20 min</div>
+                  </div>
+                  <span class="material-symbols-outlined text-[#251913]/40 group-hover:text-[#FBF7F4] group-hover:translate-x-1 transition-all duration-300 text-sm">arrow_forward</span>
+                </div>
+                <div class="bg-[#FBF7F4] rounded-xl p-3 flex items-center gap-3 hover:bg-[#251913] hover:text-[#FBF7F4] transition-all duration-500 cursor-pointer group hover:translate-x-2">
+                  <div class="w-8 h-8 bg-[#251913] group-hover:bg-[#FBF7F4] rounded-full flex items-center justify-center flex-shrink-0 transition-colors duration-500">
+                    <span class="material-symbols-outlined text-[#FBF7F4] group-hover:text-[#251913] text-sm transition-colors duration-500">restaurant</span>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-headline-md text-sm font-bold mb-0.5">Arroz tres delicias</div>
+                    <div class="text-xs opacity-60">92% match • 30 min</div>
+                  </div>
+                  <span class="material-symbols-outlined text-[#251913]/40 group-hover:text-[#FBF7F4] group-hover:translate-x-1 transition-all duration-300 text-sm">arrow_forward</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
+
+<style>
+  @keyframes rotate-slow { to { transform: rotate(360deg); } }
+  @keyframes rotate-fast { to { transform: rotate(360deg); } }
+  .animate-clock-slow { animation: rotate-slow 12s linear infinite; }
+  .animate-clock-fast { animation: rotate-fast 3s linear infinite; }
+
+  .circle-progress { transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  .benefit-card { 
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .benefit-card:hover { transform: translateY(-6px); }
+
+  .benefit-demo-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .benefit-demo-content.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .benefit-demo-content.hidden { display: none; }
+
+  @keyframes blob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+  }
+  .animate-blob { animation: blob 7s infinite; }
+  .animation-delay-2000 { animation-delay: 2s; }
+
+  @keyframes expand {
+    from { width: 0; }
+    to { width: 4rem; }
+  }
+  .animate-expand { animation: expand 1s ease-out forwards; }
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-up { animation: fade-up 0.8s ease-out forwards; opacity: 0; }
+
+  .benefit-card.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .benefit-card.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes progress-fill {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+  .progress-fill.animating {
+    animation: progress-fill 8s linear forwards;
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  const benefitCards = document.querySelectorAll('.benefit-card');
+  const benefitDemos = document.querySelectorAll('.benefit-demo-content');
+  const progressBars = document.querySelectorAll('.progress-bar .progress-fill');
+  const demoCounter = document.getElementById('demo-counter');
+  const demoTitle = document.getElementById('demo-title');
+  const demoSubtitle = document.getElementById('demo-subtitle');
+  
+  const demoData = {
+    time: { title: 'Decisiones en segundos', subtitle: 'Nuestra IA analiza tus ingredientes y preferencias al instante' },
+    savings: { title: 'Ahorra hasta un 30%', subtitle: 'Optimización inteligente de tu cesta de la compra' },
+    goals: { title: 'Reduce residuos hasta un 80%', subtitle: 'Impacto ambiental medible y real' },
+    premium: { title: '+5000 recetas gourmet', subtitle: 'Biblioteca premium adaptada a tus electrodomésticos' },
+    planning: { title: 'Planificación automática', subtitle: 'El algoritmo predice caducidades y diseña tu menú' },
+    search: { title: 'Búsqueda en menos de 3 segundos', subtitle: 'Encuentra recetas al instante con ingredientes sueltos' }
+  };
+  
+  let currentDemo = 'time';
+  let currentDemoIndex = 0;
+  let isPaused = false;
+  let autoRotateTimeout;
+  
+  // Staggered reveal animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const delay = entry.target.style.getPropertyValue('--delay') || 0;
+        setTimeout(() => entry.target.classList.add('visible'), delay * 100);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  
+  benefitCards.forEach(card => observer.observe(card));
+  
+  // Update progress bars
+  function updateProgressBars(activeIndex) {
+    progressBars.forEach((bar, index) => {
+      bar.classList.remove('animating');
+      bar.style.width = '0%';
+      
+      if (index < activeIndex) {
+        bar.style.width = '100%';
+      } else if (index === activeIndex) {
+        setTimeout(() => bar.classList.add('animating'), 100);
+      }
+    });
+  }
+  
+  // ===== DETECTAR FIN DE ANIMACIÓN DE BARRA =====
+  progressBars.forEach((bar, index) => {
+    bar.addEventListener('animationend', function() {
+      // Solo avanzar si NO está pausado y es la barra activa actual
+      if (!isPaused && index === currentDemoIndex) {
+        goToNextSlide();
+      }
+    });
+  });
+  
+  // Función para ir al siguiente slide
+  function goToNextSlide() {
+    const nextIndex = (currentDemoIndex + 1) % benefitCards.length;
+    benefitCards[nextIndex].click();
+  }
+  
+  // Card Click Handler
+  benefitCards.forEach((card, index) => {
+    card.addEventListener('click', function() {
+      const benefit = this.getAttribute('data-benefit');
+      currentDemo = benefit;
+      currentDemoIndex = index;
+      
+      // Update demos
+      benefitDemos.forEach(demo => {
+        if (demo.getAttribute('data-demo') === benefit) {
+          demo.classList.remove('hidden');
+          setTimeout(() => demo.classList.add('active'), 10);
+        } else {
+          demo.classList.remove('active');
+          setTimeout(() => demo.classList.add('hidden'), 600);
+        }
+      });
+      
+      // Update header with animation
+      demoCounter.textContent = `0${index + 1}`;
+      demoTitle.style.opacity = '0';
+      demoTitle.style.transform = 'translateY(-10px)';
+      demoSubtitle.style.opacity = '0';
+      demoSubtitle.style.transform = 'translateY(-10px)';
+      
+      setTimeout(() => {
+        demoTitle.textContent = demoData[benefit].title;
+        demoSubtitle.textContent = demoData[benefit].subtitle;
+        demoTitle.style.opacity = '1';
+        demoTitle.style.transform = 'translateY(0)';
+        demoSubtitle.style.opacity = '1';
+        demoSubtitle.style.transform = 'translateY(0)';
+      }, 300);
+      
+      // Update progress bars
+      updateProgressBars(index);
+      
+      // Trigger animations
+      triggerDemoAnimations(benefit);
+    });
+  });
+  
+  function triggerDemoAnimations(benefit) {
+    if (benefit === 'time') {
+      animateCounter(document.getElementById('time-counter'), 3, 1500);
+    }
+    
+    if (benefit === 'savings') {
+      updateSavingsValues();
+    }
+    
+    if (benefit === 'goals') {
+      setTimeout(() => {
+        document.querySelectorAll('.circle-progress').forEach(circle => {
+          const target = circle.getAttribute('data-target');
+          circle.style.strokeDashoffset = target;
+        });
+      }, 200);
+    }
+    
+    if (benefit === 'search') {
+      const tags = document.querySelectorAll('#search-tags span');
+      tags.forEach((tag, i) => {
+        tag.style.opacity = '0';
+        tag.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+          tag.style.transition = 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)';
+          tag.style.opacity = '1';
+          tag.style.transform = 'scale(1)';
+        }, i * 100);
+      });
+    }
+  }
+  
+  // Counter Animation
+  function animateCounter(element, target, duration = 1000) {
+    let start = null;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      element.textContent = Math.floor(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+      else element.textContent = target;
+    };
+    requestAnimationFrame(step);
+  }
+  
+  // SLIDER: ACTUALIZACIÓN DIRECTA SIN ANIMACIONES
+  const savingsSlider = document.getElementById('savings-slider');
+  if (savingsSlider) {
+    savingsSlider.addEventListener('input', updateSavingsValues);
+  }
+  
+  function updateSavingsValues() {
+    const slider = document.getElementById('savings-slider');
+    if (!slider) return;
+    
+    const amount = parseInt(slider.value);
+    const savings = Math.round(amount * 0.3);
+    const annual = savings * 12;
+    const newAmount = amount - savings;
+    
+    document.getElementById('savings-amount').textContent = amount;
+    document.getElementById('without-cooker').textContent = amount + '€';
+    document.getElementById('with-cooker').textContent = newAmount + '€';
+    document.getElementById('annual-savings').textContent = annual + '€';
+  }
+  
+  // ===== PAUSA AL HACER HOVER =====
+  const demoArea = document.querySelector('.benefit-demo-content')?.parentElement;
+  if (demoArea) {
+    demoArea.addEventListener('mouseenter', () => {
+      isPaused = true;
+      // Pausar la animación de la barra actual
+      const activeBar = progressBars[currentDemoIndex];
+      if (activeBar) {
+        activeBar.style.animationPlayState = 'paused';
+      }
+    });
+    
+    demoArea.addEventListener('mouseleave', () => {
+      isPaused = false;
+      // Reanudar la animación de la barra actual
+      const activeBar = progressBars[currentDemoIndex];
+      if (activeBar) {
+        activeBar.style.animationPlayState = 'running';
+      }
+    });
+  }
+  
+  // Initial animation
+  setTimeout(() => benefitCards[0].click(), 500);
+  
+  // Magnetic effect on cards
+  benefitCards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) / 25;
+      const rotateY = (centerX - x) / 25;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+  
+});
+</script>
 <!-- Recipe Explorer -->
 <section class="py-xl bg-surface">
-<div class="max-w-container-max mx-auto px-gutter">
-<div class="flex justify-between items-end mb-xl reveal">
-<div>
-<h2 class="font-headline-lg text-headline-lg">Explora nuevas ideas</h2>
-<p class="font-body-md text-body-md text-on-surface-variant">Basadas en lo que la comunidad está cocinando hoy.</p>
-</div>
-<button class="text-primary font-label-md flex items-center gap-base hover:gap-sm transition-all">
-                        Ver todas <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-<!-- Recipe Card 1 -->
-<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal">
-<div class="h-48 relative">
-<img class="w-full h-full object-cover" data-alt="A delicious bowl of Mediterranean Buddha Bowl with chickpeas, avocado, and quinoa. Colorful presentation with soft focus background of a modern kitchen. High-quality food photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8IjyKgTNNMiS-nxXn0enXUZLwFoPGjPzOlpouDRwg3rVb1SkAYg9T9GeI22AjY0NqKVx_H-xiUctCkjVyXQlG1KEWCO3SKla7HsU-Vvhatic6BoBZJ3bXjBDA0Ig_NjfcFbAXdW_ERe_BwdWcCCkOrMbTpIHxGNmi3e-yHPWPTeodJhAnkB9MTWvMAtv9nyW96fOcgbsn1qrMBv1IXxNZdhtgEtiJV-HQXXBMXiJ1LNQove6adN7oVEJL2PoO_ZKWlpahL8qlA"/>
-<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">98% Match</div>
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-[18px] mb-xs">Buddha Bowl Mediterráneo</h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 15 min</span>
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
-</div>
-</div>
-</div>
-<!-- Recipe Card 2 -->
-<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 100ms;">
-<div class="h-48 relative">
-<img class="w-full h-full object-cover" data-alt="Creamy pumpkin soup served in a ceramic bowl with toasted pumpkin seeds on top. Warm autumn lighting, cozy kitchen atmosphere, minimalist presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJeQfj9_f2JW1wgZjrrLMB71-KfKfPqtnZrr8d909kGtnjG4VLEgrYHSrlWQV8c9ENNK2TCDdTwt5XNsOhmx54nm1zr1HLV-Go1Uve6U6O-wn7WjYcgv82M8f2TRQ8Zj6IyQkrB6OQEqkDjSO-hOSrF24JOCax-6FwneUc_UXlZpUGu46Hh6kmd6aR3DqEtiNhswi22NBckD-trkr2bIicrvGpfHGngHteD9lmW_xvB1Bz5Z4eLrnBfTpGmfVcblRUPL_jqj-JA"/>
-<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">85% Match</div>
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-[18px] mb-xs">Crema de Calabaza y Jengibre</h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 25 min</span>
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Medio</span>
-</div>
-</div>
-</div>
-<!-- Recipe Card 3 -->
-<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 200ms;">
-<div class="h-48 relative">
-<img class="w-full h-full object-cover" data-alt="Authentic Italian pasta carbonara with pancetta and black pepper. Golden lighting, rustic wooden table background, high contrast food styling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSObZDt6QOVipKg1ARokjoc-Am7Sg0_zlBMD_XBq_Is3618YH8EJXiD1XjzUXe1tvP6aiscSbbTfZmbcIgT1aT9ws4Vj1fT2jAdHJN6PDaxvvDwnaav-sesc17BPRE2ZHYQbU5ob-qqwP0XaVxDwYsqImnfbFlMOTlgaO5auIZZr19OF1R-X5R0gridycCMJ9DpZJmGwpiATwnXlAZV9R2b8q6w1C4UKlQWQRnRsz3eWL8Q9GuDb9mAFtL768N-1-joDR1BSyyXg"/>
-<div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full">Top Pick</div>
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-[18px] mb-xs">Pasta Carbonara Clásica</h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 20 min</span>
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
-</div>
-</div>
-</div>
-<!-- Recipe Card 4 -->
-<div class="bg-surface rounded-[16px] overflow-hidden card-shadow reveal" style="transition-delay: 300ms;">
-<div class="h-48 relative">
-<img class="w-full h-full object-cover" data-alt="Fresh salmon poke bowl with edamame, seaweed, and sesame seeds. Bright, vibrant colors, clean studio lighting, modern healthy food presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tKeF8SF6HJdPewBw9az0UwrQeWdlfFS7w11T153q8rTtkmKM0Exy3R035mLYL-BiYZikIjXFB3RtJ3bsXpdYMtDjtfVbWr-xSUsp8gqYkHqD2w065Q2iuPMe7Rk48lBwdmyzTVRHrhBFu3kslwCZgnzNPlvkP6C1Z_o8lKkjaZTI9qCTlwaKm47i8fLzksAV9HAd_U0MCVaQ0u2WDVk_e6yALyqF4TbIT8-oufsWSGNY6xVgXn5i44tleGI2a0ufrkMnXL-vfQ"/>
-<div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">92% Match</div>
-</div>
-<div class="p-md">
-<h4 class="font-headline-md text-[18px] mb-xs">Poke Bowl de Salmón</h4>
-<div class="flex items-center gap-sm text-on-surface-variant text-label-md">
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">schedule</span> 10 min</span>
-<span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">bolt</span> Fácil</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+    <div class="max-w-container-max mx-auto px-gutter">
+        <!-- Header Mejorado -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-xl gap-md reveal">
+            <div>
+                <h2 class="font-headline-lg text-headline-lg mb-xs">Explora nuevas ideas</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant">
+                    Recomendadas por nuestra IA según <span class="text-primary font-medium">tu despensa</span> y las tendencias de hoy.
+                </p>
+            </div>
+        </div>
+
+        <!-- Bento Grid Layout (9 Recetas) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-3 gap-md auto-rows-fr">
+            
+            <!-- Card 1: Featured (Más grande) -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer lg:col-span-2 lg:row-span-2 relative" data-recipe-id="1">
+                <div class="h-full relative">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Buddha Bowl Mediterráneo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8IjyKgTNNMiS-nxXn0enXUZLwFoPGjPzOlpouDRwg3rVb1SkAYg9T9GeI22AjY0NqKVx_H-xiUctCkjVyXQlG1KEWCO3SKla7HsU-Vvhatic6BoBZJ3bXjBDA0Ig_NjfcFbAXdW_ERe_BwdWcCCkOrMbTpIHxGNmi3e-yHPWPTeodJhAnkB9MTWvMAtv9nyW96fOcgbsn1qrMBv1IXxNZdhtgEtiJV-HQXXBMXiJ1LNQove6adN7oVEJL2PoO_ZKWlpahL8qlA" loading="lazy"/>
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    
+                    <div class="absolute top-md right-md flex gap-xs">
+                        <span class="bg-primary text-on-primary text-label-md px-sm py-1 rounded-full flex items-center gap-1 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-[16px]">auto_awesome</span> 98% Match
+                        </span>
+                    </div>
+
+                    <button class="absolute top-md left-md bg-white/20 backdrop-blur-md text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/30" aria-label="Guardar en favoritos">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+
+                    <div class="absolute bottom-0 p-lg text-white w-full">
+                        <div class="flex items-center gap-sm text-white/80 text-label-md mb-sm">
+                            <span class="bg-green-500/20 text-green-300 px-2 py-0.5 rounded text-xs font-bold">Usas 5/5 ingredientes 🎉</span>
+                            <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 15 min</span>
+                        </div>
+                        <h3 class="font-headline-lg text-2xl mb-xs">Buddha Bowl Mediterráneo</h3>
+                        <p class="font-body-sm text-white/70 line-clamp-2">Crujiente, saludable y perfecto para aprovechar esos garbanzos que te sobraron el martes.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: Crema de Calabaza -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer" data-recipe-id="2" style="transition-delay: 100ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Crema de calabaza" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFJeQfj9_f2JW1wgZjrrLMB71-KfKfPqtnZrr8d909kGtnjG4VLEgrYHSrlWQV8c9ENNK2TCDdTwt5XNsOhmx54nm1zr1HLV-Go1Uve6U6O-wn7WjYcgv82M8f2TRQ8Zj6IyQkrB6OQEqkDjSO-hOSrF24JOCax-6FwneUc_UXlZpUGu46Hh6kmd6aR3DqEtiNhswi22NBckD-trkr2bIicrvGpfHGngHteD9lmW_xvB1Bz5Z4eLrnBfTpGmfVcblRUPL_jqj-JA" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">85% Match</div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded font-bold">VEGANO</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Crema de Calabaza y Jengibre</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 25 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Medio</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3: Pasta Carbonara -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer" data-recipe-id="3" style="transition-delay: 200ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Pasta carbonara" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSObZDt6QOVipKg1ARokjoc-Am7Sg0_zlBMD_XBq_Is3618YH8EJXiD1XjzUXe1tvP6aiscSbbTfZmbcIgT1aT9ws4Vj1fT2jAdHJN6PDaxvvDwnaav-sesc17BPRE2ZHYQbU5ob-qqwP0XaVxDwYsqImnfbFlMOTlgaO5auIZZr19OF1R-X5R0gridycCMJ9DpZJmGwpiATwnXlAZV9R2b8q6w1C4UKlQWQRnRsz3eWL8Q9GuDb9mAFtL768N-1-joDR1BSyyXg" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">local_fire_department</span> Top Pick
+                    </div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Pasta Carbonara Clásica</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 20 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Fácil</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 4: Salmorejo Cordobés -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer" data-recipe-id="4" style="transition-delay: 300ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Salmorejo cordobés tradicional" src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=600&fit=crop" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">95% Match</div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded font-bold">VEGANO</span>
+                        <span class="text-[10px] bg-red-100 text-red-800 px-1.5 py-0.5 rounded font-bold">TRADICIONAL</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Salmorejo Cordobés</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 10 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Fácil</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 5: Espinacas con Garbanzos -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer md:col-span-2 lg:col-span-1" data-recipe-id="5" style="transition-delay: 400ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Espinacas con garbanzos andaluza" src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&h=600&fit=crop" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">eco</span> Sostenible
+                    </div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded font-bold">VEGANO</span>
+                        <span class="text-[10px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">SIN GLUTEN</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Espinacas con Garbanzos</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 30 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Fácil</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 6: Arroz con Alubias -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer md:col-span-2 lg:col-span-1" data-recipe-id="6" style="transition-delay: 500ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Arroz con alubias blancas tradicional" src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&h=600&fit=crop" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">88% Match</div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded font-bold">VEGANO</span>
+                        <span class="text-[10px] bg-green-100 text-green-800 px-1.5 py-0.5 rounded font-bold">ALTO EN FIBRA</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Arroz con Alubias Blancas</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 40 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Medio</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 7: Pechuga de Pollo -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer md:col-span-2 lg:col-span-1" data-recipe-id="7" style="transition-delay: 600ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Pechuga de pollo a la plancha jugosa" src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&h=600&fit=crop" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-green-500 text-white text-label-md px-sm py-1 rounded-full flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">fitness_center</span> Saludable
+                    </div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">SIN GLUTEN</span>
+                        <span class="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-bold">ALTO EN PROTEÍNAS</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Pechuga de Pollo a la Plancha</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 15 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Fácil</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 8: Poke Bowl -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer md:col-span-2 lg:col-span-1" data-recipe-id="8" style="transition-delay: 700ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Poke bowl" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tKeF8SF6HJdPewBw9az0UwrQeWdlfFS7w11T153q8rTtkmKM0Exy3R035mLYL-BiYZikIjXFB3RtJ3bsXpdYMtDjtfVbWr-xSUsp8gqYkHqD2w065Q2iuPMe7Rk48lBwdmyzTVRHrhBFu3kslwCZgnzNPlvkP6C1Z_o8lKkjaZTI9qCTlwaKm47i8fLzksAV9HAd_U0MCVaQ0u2WDVk_e6yALyqF4TbIT8-oufsWSGNY6xVgXn5i44tleGI2a0ufrkMnXL-vfQ" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-secondary text-on-secondary text-label-md px-sm py-1 rounded-full">92% Match</div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-bold">SIN GLUTEN</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Poke Bowl de Salmón</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 10 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Fácil</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 9: Migas Extremeñas -->
+            <article class="bg-surface rounded-2xl overflow-hidden card-shadow reveal group cursor-pointer md:col-span-2 lg:col-span-1" data-recipe-id="9" style="transition-delay: 800ms;">
+                <div class="h-48 relative overflow-hidden">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Migas extremeñas tradicionales con chorizo y pimientos" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&h=600&fit=crop" loading="lazy"/>
+                    <div class="absolute top-sm right-sm bg-primary text-on-primary text-label-md px-sm py-1 rounded-full flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">eco</span> Zero Waste
+                    </div>
+                    <button class="absolute top-sm left-sm bg-black/20 backdrop-blur-md text-white p-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" aria-label="Guardar">
+                        <span class="material-symbols-outlined text-[18px]">favorite</span>
+                    </button>
+                </div>
+                <div class="p-md">
+                    <div class="flex gap-xs mb-xs">
+                        <span class="text-[10px] bg-red-100 text-red-800 px-1.5 py-0.5 rounded font-bold">TRADICIONAL</span>
+                        <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-bold">APROVECHAMIENTO</span>
+                    </div>
+                    <h4 class="font-headline-md text-[18px] mb-xs line-clamp-1">Migas Extremeñas</h4>
+                    <div class="flex items-center gap-sm text-on-surface-variant text-label-md">
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">schedule</span> 35 min</span>
+                        <span class="flex items-center gap-xs"><span class="material-symbols-outlined text-[16px]">bolt</span> Medio</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </div>
 </section>
-<!-- Testimonials -->
-<section class="py-xl px-gutter max-w-container-max mx-auto">
-<h2 class="font-headline-lg text-headline-lg text-center mb-xl reveal">Lo que dicen nuestros chefs</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md">
-<p class="font-body-md text-body-md italic text-on-surface-variant">"COOKER ha cambiado totalmente mi rutina. Antes tiraba mucha comida, ahora siempre encuentro algo rico que cocinar."</p>
-<div class="flex items-center gap-sm">
-<div class="w-12 h-12 rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Portrait of a smiling young woman in a bright, modern interior setting. She looks happy and confident, professional photography with soft bokeh." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuhz4B0Urz-LJYre1mF_CtihGWlYS-XjxHC-FTNvb383TIWyIkZ_gLu1WPmK7TUqGLdjPVK7sWEKKKqOKkPHz1rGuVVpGWnORc1qTviyUUvYv1r7IX5_Og06j_Z1A_-gMdWZKlAI1Ft6e228PnpCdmjrOav5EiP3_ye4YcZEnuvoSMPrMLJ9SSzhpzFZc4L1BEq2n0ZHJ0nc2RzzauAVnLh-NM7nAvY_CzVwDBjnlIo26sUMp9k4YC-gNg0_96seuB46t6dEmQzg"/>
-</div>
-<div>
-<p class="font-label-md text-label-md">Elena García</p>
-<p class="text-xs text-on-surface-variant">Madre y Diseñadora</p>
-</div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md" style="transition-delay: 100ms;">
-<p class="font-body-md text-body-md italic text-on-surface-variant">"La interfaz es súper limpia y las sugerencias son sorprendentemente precisas. Me encanta el temporizador paso a paso."</p>
-<div class="flex items-center gap-sm">
-<div class="w-12 h-12 rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A portrait of a cheerful middle-aged man with glasses in a bright sunlit kitchen. He is wearing a casual shirt and looking at the camera with a friendly expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO7wa16SHkRWJkV3B1G4_uSp_YFmWz_x611NBd2gtSijaIWtmbOLsBiSRdwZafzUeulCneK2FlHs_O_BnGQhy1JAou1okliACuxnUmDQRHAPI_PksFZx3SyzJuo5i3SHgTpqlv2j2Zfz_FYsDHTnkfO4ews6qE-1yTYpnAClhGjjww3etq6KpIzYE3qgU5k0v3xcYyV0CDbzBOz-b6TQff3aAjiGh-4bG4rl97EwqiPbJR1KK629K34Itqos53vX2oct2q-DUTaA"/>
-</div>
-<div>
-<p class="font-label-md text-label-md">Marc Torres</p>
-<p class="text-xs text-on-surface-variant">Entusiasta de la cocina</p>
-</div>
-</div>
-</div>
-<div class="bg-white p-lg rounded-xl card-shadow reveal flex flex-col gap-md" style="transition-delay: 200ms;">
-<p class="font-body-md text-body-md italic text-on-surface-variant">"Como estudiante, me ayuda a ahorrar dinero y a comer mucho más sano que antes. ¡Imprescindible!"</p>
-<div class="flex items-center gap-sm">
-<div class="w-12 h-12 rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Portrait of a young adult man with a friendly smile, standing in a brightly lit cafe setting. He looks relaxed and satisfied." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpnHxJBALNW-YW2vPsRPqE2fuxZvp8MGjVyLSKR3MnxeSEJCZsdyd076Ij4NGSE-wseXirldgudReBNXIYKTaT_j08be4juTUea5fCsjWu9ColHY_evL2gvffo7dtTGqOQxbxdxs0lnIsRE6xSYvilJ07BV430YYdkNS_Hril3xyJNE2hj9QfQHbgBpe7_q_E0Ctf8FevC61_gc13-vMIeyxnGAJ7Tk1SpjUkaH1F9IrpKsdHO-XRRkZbqJ5ZS8y2zF-jWlZFfZA"/>
-</div>
-<div>
-<p class="font-label-md text-label-md">David Soler</p>
-<p class="text-xs text-on-surface-variant">Estudiante de Medicina</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Final CTA -->
-<section class="py-xl bg-primary text-on-primary text-center px-gutter">
-<div class="max-w-3xl mx-auto reveal">
-<h2 class="font-display-lg text-[40px] leading-tight mb-md">¿Listo para revolucionar tu cocina?</h2>
-<p class="font-body-lg text-body-lg mb-lg opacity-90">Únete a miles de personas que ya están ahorrando tiempo y dinero con COOKER.</p>
-<button class="bg-on-primary text-primary h-[56px] px-xl rounded-full font-headline-md text-headline-md hover:bg-opacity-90 transition-all active:scale-95 shadow-xl">
-                    Empezar a cocinar ahora
+
+<!-- Recipe Modal -->
+<div id="recipe-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300" aria-modal="true" role="dialog">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-md" id="modal-backdrop"></div>
+    
+    <div class="relative h-full w-full overflow-y-auto flex items-start justify-center p-4 sm:p-6 lg:p-8">
+        <div class="bg-surface rounded-3xl shadow-2xl max-w-5xl w-full my-8 transform scale-95 transition-transform duration-300" id="modal-content">
+            
+            <div class="relative h-96 overflow-hidden rounded-t-3xl">
+                <img id="modal-image" class="w-full h-full object-cover" alt="" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                <button id="modal-close" class="absolute top-4 right-4 bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Cerrar">
+                    <span class="material-symbols-outlined">close</span>
                 </button>
+                
+                <div class="absolute top-4 left-4 flex gap-2">
+                    <button id="modal-favorite" class="bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white/30 transition-all hover:scale-110" aria-label="Guardar en favoritos">
+                        <span class="material-symbols-outlined">favorite</span>
+                    </button>
+                    <button id="modal-share" class="bg-white/20 backdrop-blur-md text-white p-2 rounded-full hover:bg-white/30 transition-colors" aria-label="Compartir">
+                        <span class="material-symbols-outlined">share</span>
+                    </button>
+                </div>
+                
+                <div class="absolute bottom-0 left-0 right-0 p-8 text-white">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span id="modal-match" class="bg-primary text-on-primary px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                            <span id="modal-match-text">98% Match</span>
+                        </span>
+                        <span id="modal-difficulty" class="bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-sm">Fácil</span>
+                    </div>
+                    <h2 id="modal-title" class="font-headline-lg text-4xl mb-2"></h2>
+                    <div class="flex items-center gap-4 text-white/80">
+                        <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined">schedule</span>
+                            <span id="modal-time">15 min</span>
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined">restaurant</span>
+                            <span id="modal-servings">2 personas</span>
+                        </span>
+                        <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined">local_fire_department</span>
+                            <span id="modal-calories">350 kcal</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-8">
+                <p id="modal-description" class="text-body-lg text-on-surface-variant mb-8"></p>
+                
+                <div class="border-b border-on-surface/10 mb-6">
+                    <nav class="flex gap-8">
+                        <button class="tab-button active pb-3 border-b-2 border-primary text-primary font-label-md" data-tab="ingredients">
+                            Ingredientes
+                        </button>
+                        <button class="tab-button pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-md" data-tab="steps">
+                            Pasos
+                        </button>
+                        <button class="tab-button pb-3 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-label-md" data-tab="nutrition">
+                            Nutrición
+                        </button>
+                    </nav>
+                </div>
+                
+                <div id="tab-ingredients" class="tab-content">
+                    <div class="flex items-center justify-between mb-6 bg-primary/5 p-4 rounded-xl">
+                        <span class="font-label-md">Ajustar porciones:</span>
+                        <div class="flex items-center gap-3">
+                            <button id="decrease-servings" class="bg-surface w-8 h-8 rounded-full flex items-center justify-center hover:bg-on-surface/10 transition-colors">
+                                <span class="material-symbols-outlined">remove</span>
+                            </button>
+                            <span id="servings-count" class="font-headline-md text-xl min-w-[2ch] text-center">2</span>
+                            <button id="increase-servings" class="bg-surface w-8 h-8 rounded-full flex items-center justify-center hover:bg-on-surface/10 transition-colors">
+                                <span class="material-symbols-outlined">add</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <ul id="ingredients-list" class="space-y-3 mb-6"></ul>
+                    
+                    <button id="add-to-list" class="w-full bg-primary text-on-primary py-3 rounded-xl font-label-md flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        Añadir faltantes a la lista de compra
+                    </button>
+                </div>
+                
+                <div id="tab-steps" class="tab-content hidden">
+                    <ol id="steps-list" class="space-y-6"></ol>
+                    
+                    <button id="start-cooking" class="w-full mt-8 bg-secondary text-on-secondary py-4 rounded-xl font-label-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+                        <span class="material-symbols-outlined">play_arrow</span>
+                        Empezar Modo Cocina
+                    </button>
+                </div>
+                
+                <div id="tab-nutrition" class="tab-content hidden">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-primary/5 p-4 rounded-xl text-center">
+                            <p class="text-3xl font-bold text-primary mb-1" id="nutrition-calories">350</p>
+                            <p class="text-sm text-on-surface-variant">Calorías</p>
+                        </div>
+                        <div class="bg-secondary/5 p-4 rounded-xl text-center">
+                            <p class="text-3xl font-bold text-secondary mb-1" id="nutrition-protein">15g</p>
+                            <p class="text-sm text-on-surface-variant">Proteínas</p>
+                        </div>
+                        <div class="bg-green-500/5 p-4 rounded-xl text-center">
+                            <p class="text-3xl font-bold text-green-600 mb-1" id="nutrition-carbs">45g</p>
+                            <p class="text-sm text-on-surface-variant">Carbohidratos</p>
+                        </div>
+                        <div class="bg-orange-500/5 p-4 rounded-xl text-center">
+                            <p class="text-3xl font-bold text-orange-600 mb-1" id="nutrition-fat">12g</p>
+                            <p class="text-sm text-on-surface-variant">Grasas</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-surface-variant/5 rounded-xl">
+                        <h4 class="font-label-md mb-3">Información Dietética</h4>
+                        <div id="dietary-tags" class="flex flex-wrap gap-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</section>
+
+<script>
+// Recipe Data - 9 Recetas Completas
+const recipes = {
+    1: {
+        title: "Buddha Bowl Mediterráneo",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD-8IjyKgTNNMiS-nxXn0enXUZLwFoPGjPzOlpouDRwg3rVb1SkAYg9T9GeI22AjY0NqKVx_H-xiUctCkjVyXQlG1KEWCO3SKla7HsU-Vvhatic6BoBZJ3bXjBDA0Ig_NjfcFbAXdW_ERe_BwdWcCCkOrMbTpIHxGNmi3e-yHPWPTeodJhAnkB9MTWvMAtv9nyW96fOcgbsn1qrMBv1IXxNZdhtgEtiJV-HQXXBMXiJ1LNQove6adN7oVEJL2PoO_ZKWlpahL8qlA",
+        match: "98% Match",
+        time: "15 min",
+        difficulty: "Fácil",
+        servings: 2,
+        calories: 350,
+        description: "Un bowl nutritivo y colorido lleno de garbanzos crujientes, aguacate cremoso y quinoa esponjosa. Perfecto para aprovechar esos ingredientes que tienes en la nevera.",
+        ingredients: [
+            { name: "Garbanzos cocidos", amount: 200, unit: "g", inStock: true },
+            { name: "Quinoa", amount: 100, unit: "g", inStock: true },
+            { name: "Aguacate", amount: 1, unit: "ud", inStock: true },
+            { name: "Tomates cherry", amount: 100, unit: "g", inStock: true },
+            { name: "Pepino", amount: 0.5, unit: "ud", inStock: true },
+            { name: "Aceite de oliva", amount: 2, unit: "cucharadas", inStock: false },
+            { name: "Limón", amount: 1, unit: "ud", inStock: false }
+        ],
+        steps: [
+            { text: "Cocina la quinoa según las instrucciones del paquete (unos 15 minutos).", timer: 900 },
+            { text: "Mientras tanto, trocea el pepino y los tomates cherry.", timer: 0 },
+            { text: "Corta el aguacate en láminas.", timer: 0 },
+            { text: "Escurre y enjuaga los garbanzos. Si quieres, puedes tostarlos en el horno con especias.", timer: 600 },
+            { text: "Prepara el aliño mezclando aceite de oliva, zumo de limón, sal y pimienta.", timer: 0 },
+            { text: "Monta el bowl: quinoa de base, garbanzos, verduras y aguacate. Aliña al gusto.", timer: 0 }
+        ],
+        nutrition: { calories: 350, protein: "15g", carbs: "45g", fat: "12g" },
+        dietary: ["Vegano", "Sin Gluten", "Alto en Fibra"]
+    },
+    2: {
+        title: "Crema de Calabaza y Jengibre",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBFJeQfj9_f2JW1wgZjrrLMB71-KfKfPqtnZrr8d909kGtnjG4VLEgrYHSrlWQV8c9ENNK2TCDdTwt5XNsOhmx54nm1zr1HLV-Go1Uve6U6O-wn7WjYcgv82M8f2TRQ8Zj6IyQkrB6OQEqkDjSO-hOSrF24JOCax-6FwneUc_UXlZpUGu46Hh6kmd6aR3DqEtiNhswi22NBckD-trkr2bIicrvGpfHGngHteD9lmW_xvB1Bz5Z4eLrnBfTpGmfVcblRUPL_jqj-JA",
+        match: "85% Match",
+        time: "25 min",
+        difficulty: "Medio",
+        servings: 4,
+        calories: 180,
+        description: "Una crema reconfortante y aromática perfecta para los días fríos. El jengibre le da un toque especiado que la hace única.",
+        ingredients: [
+            { name: "Calabaza", amount: 500, unit: "g", inStock: true },
+            { name: "Cebolla", amount: 1, unit: "ud", inStock: true },
+            { name: "Jengibre fresco", amount: 20, unit: "g", inStock: false },
+            { name: "Caldo de verduras", amount: 500, unit: "ml", inStock: false },
+            { name: "Aceite de oliva", amount: 2, unit: "cucharadas", inStock: true },
+            { name: "Sal y pimienta", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Pela y trocea la calabaza en cubos medianos.", timer: 0 },
+            { text: "Pica la cebolla y ralla el jengibre.", timer: 0 },
+            { text: "Sofríe la cebolla en una cazuela con aceite hasta que esté transparente.", timer: 300 },
+            { text: "Añade la calabaza y el jengibre. Cocina 5 minutos removiendo.", timer: 300 },
+            { text: "Agrega el caldo y cocina hasta que la calabaza esté tierna (15 min).", timer: 900 },
+            { text: "Tritura todo con una batidora hasta obtener una crema suave. Ajusta sal y pimienta.", timer: 0 }
+        ],
+        nutrition: { calories: 180, protein: "4g", carbs: "28g", fat: "6g" },
+        dietary: ["Vegano", "Sin Gluten", "Bajo en Calorías"]
+    },
+    3: {
+        title: "Pasta Carbonara Clásica",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDSObZDt6QOVipKg1ARokjoc-Am7Sg0_zlBMD_XBq_Is3618YH8EJXiD1XjzUXe1tvP6aiscSbbTfZmbcIgT1aT9ws4Vj1fT2jAdHJN6PDaxvvDwnaav-sesc17BPRE2ZHYQbU5ob-qqwP0XaVxDwYsqImnfbFlMOTlgaO5auIZZr19OF1R-X5R0gridycCMJ9DpZJmGwpiATwnXlAZV9R2b8q6w1C4UKlQWQRnRsz3eWL8Q9GuDb9mAFtL768N-1-joDR1BSyyXg",
+        match: "Top Pick",
+        time: "20 min",
+        difficulty: "Fácil",
+        servings: 2,
+        calories: 520,
+        description: "La auténtica receta italiana sin nata. Cremosa gracias a los huevos y el queso, con pancetta crujiente que le da el toque perfecto.",
+        ingredients: [
+            { name: "Espaguetis", amount: 200, unit: "g", inStock: true },
+            { name: "Pancetta o bacon", amount: 150, unit: "g", inStock: true },
+            { name: "Huevos", amount: 3, unit: "uds", inStock: true },
+            { name: "Queso Pecorino rallado", amount: 50, unit: "g", inStock: false },
+            { name: "Pimienta negra", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Pon a hervir agua con sal para la pasta.", timer: 600 },
+            { text: "Corta la pancetta en tiras o cubos.", timer: 0 },
+            { text: "En un bol, bate los huevos con el queso rallado y abundante pimienta negra.", timer: 0 },
+            { text: "Cocina la pasta según el paquete (al dente).", timer: 600 },
+            { text: "Mientras, sofríe la pancetta en una sartén sin aceite hasta que esté crujiente.", timer: 480 },
+            { text: "Escurre la pasta reservando un poco de agua. Mézclala con la pancetta fuera del fuego.", timer: 0 },
+            { text: "Añade la mezcla de huevo y queso removiendo rápidamente. Ajusta cremosidad con el agua de cocción.", timer: 0 }
+        ],
+        nutrition: { calories: 520, protein: "25g", carbs: "58g", fat: "22g" },
+        dietary: ["Alto en Proteínas"]
+    },
+    4: {
+        title: "Salmorejo Cordobés",
+        image: "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=600&fit=crop",
+        match: "95% Match",
+        time: "10 min",
+        difficulty: "Fácil",
+        servings: 4,
+        calories: 220,
+        description: "Auténtica sopa fría cordobesa, más espesa que el gazpacho. Tradicionalmente se sirve con jamón serrano y huevo duro picado por encima.",
+        ingredients: [
+            { name: "Tomates maduros", amount: 1000, unit: "g", inStock: true },
+            { name: "Pan de hogaza (del día anterior)", amount: 200, unit: "g", inStock: true },
+            { name: "Ajo", amount: 1, unit: "diente", inStock: true },
+            { name: "Aceite de oliva virgen extra", amount: 150, unit: "ml", inStock: true },
+            { name: "Vinagre de Jerez", amount: 20, unit: "ml", inStock: false },
+            { name: "Sal", amount: 1, unit: "cucharadita", inStock: true }
+        ],
+        steps: [
+            { text: "Lava bien los tomates y trocéalos en piezas grandes.", timer: 0 },
+            { text: "Remoja el pan en agua durante 5 minutos si está muy seco, luego escúrrelo.", timer: 300 },
+            { text: "Tritura los tomates con el ajo pelado hasta obtener un puré fino.", timer: 0 },
+            { text: "Añade el pan escurrido y tritura de nuevo hasta que esté completamente integrado.", timer: 0 },
+            { text: "Incorporar el aceite de oliva en hilo mientras sigues batiendo, como si fuera una mayonesa.", timer: 0 },
+            { text: "Añade el vinagre y la sal. Prueba y ajusta si es necesario.", timer: 0 },
+            { text: "Refrigera al menos 1 hora antes de servir. Decora con jamón serrano y huevo duro picado.", timer: 3600 }
+        ],
+        nutrition: { calories: 220, protein: "5g", carbs: "18g", fat: "15g" },
+        dietary: ["Vegano", "Sin Lácteos", "Tradicional Español"]
+    },
+    5: {
+        title: "Espinacas con Garbanzos",
+        image: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&h=600&fit=crop",
+        match: "90% Match",
+        time: "30 min",
+        difficulty: "Fácil",
+        servings: 4,
+        calories: 280,
+        description: "Plato tradicional andaluz con especias aromáticas como comino y pimentón. Una combinación nutritiva y sabrosa de legumbres y verduras.",
+        ingredients: [
+            { name: "Espinacas frescas o congeladas", amount: 500, unit: "g", inStock: true },
+            { name: "Garbanzos cocidos", amount: 400, unit: "g", inStock: true },
+            { name: "Ajos", amount: 4, unit: "dientes", inStock: true },
+            { name: "Pan del día anterior", amount: 2, unit: "rebanadas", inStock: true },
+            { name: "Pimentón dulce", amount: 1, unit: "cucharadita", inStock: true },
+            { name: "Comino molido", amount: 0.5, unit: "cucharadita", inStock: false },
+            { name: "Aceite de oliva", amount: 3, unit: "cucharadas", inStock: true },
+            { name: "Sal", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Si usas espinacas frescas, lávalas bien. Si son congeladas, descongélalas y escúrrelas.", timer: 0 },
+            { text: "Fríe las rebanadas de pan y 2 dientes de ajo en una sartén con aceite hasta que estén dorados.", timer: 300 },
+            { text: "Machaca el pan y los ajos fritos en un mortero con el comino hasta obtener un majado.", timer: 0 },
+            { text: "En una cazuela, sofríe los otros 2 dientes de ajo laminados con aceite de oliva.", timer: 180 },
+            { text: "Añade el pimentón y remueve rápidamente para que no se queme.", timer: 30 },
+            { text: "Incorpora las espinacas y cocina 5 minutos hasta que se reduzcan.", timer: 300 },
+            { text: "Agrega los garbanzos escurridos y el majado del mortero. Mezcla bien.", timer: 0 },
+            { text: "Cocina a fuego lento 10 minutos para que se integren los sabores. Ajusta de sal.", timer: 600 }
+        ],
+        nutrition: { calories: 280, protein: "14g", carbs: "32g", fat: "10g" },
+        dietary: ["Vegano", "Sin Gluten", "Alto en Hierro", "Alto en Fibra"]
+    },
+    6: {
+        title: "Arroz con Alubias Blancas",
+        image: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=800&h=600&fit=crop",
+        match: "88% Match",
+        time: "40 min",
+        difficulty: "Medio",
+        servings: 4,
+        calories: 380,
+        description: "Plato de cuchara tradicional español, reconfortante y nutritivo. Una combinación perfecta de legumbres y arroz con un sofrito sabroso.",
+        ingredients: [
+            { name: "Alubias blancas cocidas", amount: 400, unit: "g", inStock: true },
+            { name: "Arroz bomba o redondo", amount: 200, unit: "g", inStock: true },
+            { name: "Tomate triturado", amount: 200, unit: "g", inStock: true },
+            { name: "Cebolla", amount: 1, unit: "ud", inStock: true },
+            { name: "Ajos", amount: 3, unit: "dientes", inStock: true },
+            { name: "Pimiento rojo", amount: 1, unit: "ud", inStock: false },
+            { name: "Caldo de verduras", amount: 1000, unit: "ml", inStock: false },
+            { name: "Aceite de oliva", amount: 3, unit: "cucharadas", inStock: true },
+            { name: "Pimentón dulce", amount: 1, unit: "cucharadita", inStock: true },
+            { name: "Sal", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Pica la cebolla, el pimiento y los ajos en trozos pequeños.", timer: 0 },
+            { text: "En una cazuela, sofríe los ajos con aceite de oliva a fuego medio.", timer: 120 },
+            { text: "Añade la cebolla y el pimiento. Cocina 5 minutos hasta que estén tiernos.", timer: 300 },
+            { text: "Incorpora el tomate triturado y el pimentón. Cocina 3 minutos removiendo.", timer: 180 },
+            { text: "Agrega las alubias escurridas y el caldo caliente. Lleva a ebullición.", timer: 300 },
+            { text: "Cuando hierva, añade el arroz y cocina 18-20 minutos a fuego medio.", timer: 1200 },
+            { text: "Prueba el arroz y ajusta de sal. Deja reposar 5 minutos antes de servir.", timer: 300 }
+        ],
+        nutrition: { calories: 380, protein: "16g", carbs: "62g", fat: "8g" },
+        dietary: ["Vegano", "Sin Gluten", "Alto en Fibra", "Alto en Proteínas"]
+    },
+    7: {
+        title: "Pechuga de Pollo a la Plancha",
+        image: "https://images.unsplash.com/photo-1604503468506-a8da13571cc2?w=800&h=600&fit=crop",
+        match: "96% Match",
+        time: "15 min",
+        difficulty: "Fácil",
+        servings: 2,
+        calories: 165,
+        description: "Pechuga de pollo jugosa y sabrosa gracias a una marinada simple. Técnica perfecta para que quede tierna por dentro y dorada por fuera.",
+        ingredients: [
+            { name: "Pechugas de pollo sin hueso", amount: 2, unit: "uds", inStock: true },
+            { name: "Ajo", amount: 2, unit: "dientes", inStock: true },
+            { name: "Limón (jugo)", amount: 0.5, unit: "ud", inStock: true },
+            { name: "Orégano seco", amount: 0.5, unit: "cucharadita", inStock: false },
+            { name: "Pimienta negra", amount: 0.5, unit: "cucharadita", inStock: true },
+            { name: "Aceite de oliva", amount: 2, unit: "cucharadas", inStock: true },
+            { name: "Sal", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Machaca los ajos y mézclalos con el jugo de limón, orégano, pimienta, aceite y sal.", timer: 0 },
+            { text: "Marina las pechugas de pollo en esta mezcla durante al menos 10 minutos (idealmente 30 min).", timer: 600 },
+            { text: "Calienta una sartén o plancha a fuego medio-alto hasta que esté bien caliente.", timer: 180 },
+            { text: "Coloca las pechugas en la plancha y cocina 3-4 minutos sin moverlas para que se doren.", timer: 240 },
+            { text: "Dales la vuelta y cocina otros 3-4 minutos por el otro lado.", timer: 240 },
+            { text: "Retira del fuego y deja reposar 2 minutos antes de cortar. Esto mantiene los jugos dentro.", timer: 120 }
+        ],
+        nutrition: { calories: 165, protein: "31g", carbs: "1g", fat: "4g" },
+        dietary: ["Sin Gluten", "Alto en Proteínas", "Bajo en Carbohidratos", "Saludable"]
+    },
+    8: {
+        title: "Poke Bowl de Salmón",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB9tKeF8SF6HJdPewBw9az0UwrQeWdlfFS7w11T153q8rTtkmKM0Exy3R035mLYL-BiYZikIjXFB3RtJ3bsXpdYMtDjtfVbWr-xSUsp8gqYkHqD2w065Q2iuPMe7Rk48lBwdmyzTVRHrhBFu3kslwCZgnzNPlvkP6C1Z_o8lKkjaZTI9qCTlwaKm47i8fLzksAV9HAd_U0MCVaQ0u2WDVk_e6yALyqF4TbIT8-oufsWSGNY6xVgXn5i44tleGI2a0ufrkMnXL-vfQ",
+        match: "92% Match",
+        time: "10 min",
+        difficulty: "Fácil",
+        servings: 1,
+        calories: 420,
+        description: "Un bowl hawaiano fresco y saludable con salmón marinado, edamame y arroz. Perfecto para una comida rápida y nutritiva.",
+        ingredients: [
+            { name: "Salmón fresco", amount: 150, unit: "g", inStock: true },
+            { name: "Arroz para sushi", amount: 100, unit: "g", inStock: true },
+            { name: "Edamame", amount: 50, unit: "g", inStock: false },
+            { name: "Aguacate", amount: 0.5, unit: "ud", inStock: true },
+            { name: "Salsa de soja", amount: 2, unit: "cucharadas", inStock: true },
+            { name: "Sésamo", amount: 1, unit: "cucharada", inStock: true }
+        ],
+        steps: [
+            { text: "Cocina el arroz para sushi según las instrucciones.", timer: 900 },
+            { text: "Corta el salmón en cubos y marínalo con salsa de soja durante 5 minutos.", timer: 300 },
+            { text: "Corta el aguacate en láminas.", timer: 0 },
+            { text: "Monta el bowl: arroz de base, salmón, aguacate y edamame.", timer: 0 },
+            { text: "Espolvorea con sésamo y sirve inmediatamente.", timer: 0 }
+        ],
+        nutrition: { calories: 420, protein: "32g", carbs: "38g", fat: "16g" },
+        dietary: ["Sin Gluten", "Alto en Omega-3", "Sin Lácteos"]
+    },
+    9: {
+        title: "Migas Extremeñas Tradicionales",
+        image: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&h=600&fit=crop",
+        match: "97% Match",
+        time: "35 min",
+        difficulty: "Medio",
+        servings: 4,
+        calories: 480,
+        description: "El plato de aprovechamiento por excelencia en España. Migas crujientes hechas con pan duro del día anterior, acompañadas de chorizo, panceta y pimientos. Un clásico de la cocina tradicional extremeña que transforma ingredientes simples en un manjar reconfortante.",
+        ingredients: [
+            { name: "Pan del día anterior (preferiblemente candeal o rústico)", amount: 500, unit: "g", inStock: true },
+            { name: "Agua", amount: 150, unit: "ml", inStock: true },
+            { name: "Panceta ibérica", amount: 150, unit: "g", inStock: true },
+            { name: "Chorizo", amount: 150, unit: "g", inStock: true },
+            { name: "Ajos", amount: 4, unit: "dientes", inStock: true },
+            { name: "Pimiento rojo", amount: 1, unit: "ud", inStock: false },
+            { name: "Pimiento verde", amount: 1, unit: "ud", inStock: false },
+            { name: "Pimentón de la Vera (dulce)", amount: 1, unit: "cucharada", inStock: true },
+            { name: "Aceite de oliva virgen extra", amount: 100, unit: "ml", inStock: true },
+            { name: "Sal", amount: 1, unit: "al gusto", inStock: true }
+        ],
+        steps: [
+            { text: "Corta el pan en trozos pequeños (del tamaño de un garbanzo aprox.) y colócalo en una fuente amplia. Rocía con el agua y la sal, mezclando bien con las manos. Deja reposar 15-20 minutos para que el pan se hidrate uniformemente.", timer: 1200 },
+            { text: "Mientras, corta la panceta y el chorizo en rodajas finas o taquitos. Limpia los pimientos, retira las semillas y córtalos en tiras pequeñas. Pela los ajos y déjalos enteros o laminados.", timer: 0 },
+            { text: "En una sartén grande (preferiblemente de hierro), calienta un buen chorro de aceite de oliva a fuego medio. Añade los ajos y sofríelos hasta que estén dorados. Retíralos y resérvalos.", timer: 300 },
+            { text: "En el mismo aceite, fríe la panceta hasta que esté dorada y crujiente. Retírala y resérvala. Repite con el chorizo.", timer: 480 },
+            { text: "En el aceite restante, sofríe los pimientos hasta que estén tiernos pero aún crujientes. Retíralos y resérvalos.", timer: 300 },
+            { text: "Añade un poco más de aceite si es necesario. Baja el fuego al mínimo y añade el pan hidratado. Remueve constantemente con una cuchara de madera durante 15-20 minutos, hasta que las migas estén doradas y sueltas.", timer: 1200 },
+            { text: "Añade el pimentón de la Vera y remueve rápidamente para que no se queme. Incorpora los ajos, panceta, chorizo y pimientos reservados. Mezcla bien y ajusta de sal.", timer: 60 },
+            { text: "Sirve inmediatamente en el centro de la mesa. Tradicionalmente se acompaña con uvas, naranja o aceitunas.", timer: 0 }
+        ],
+        nutrition: { calories: 480, protein: "18g", carbs: "45g", fat: "26g" },
+        dietary: ["Tradicional Español", "Aprovechamiento", "Zero Waste"]
+    }
+};
+
+// Modal Elements
+const modal = document.getElementById('recipe-modal');
+const modalBackdrop = document.getElementById('modal-backdrop');
+const modalContent = document.getElementById('modal-content');
+const modalClose = document.getElementById('modal-close');
+const modalFavorite = document.getElementById('modal-favorite');
+const modalShare = document.getElementById('modal-share');
+const modalImage = document.getElementById('modal-image');
+const modalTitle = document.getElementById('modal-title');
+const modalMatchText = document.getElementById('modal-match-text');
+const modalTime = document.getElementById('modal-time');
+const modalDifficulty = document.getElementById('modal-difficulty');
+const modalServings = document.getElementById('modal-servings');
+const modalCalories = document.getElementById('modal-calories');
+const modalDescription = document.getElementById('modal-description');
+const servingsCount = document.getElementById('servings-count');
+const ingredientsList = document.getElementById('ingredients-list');
+const stepsList = document.getElementById('steps-list');
+const decreaseServings = document.getElementById('decrease-servings');
+const increaseServings = document.getElementById('increase-servings');
+const addToList = document.getElementById('add-to-list');
+const startCooking = document.getElementById('start-cooking');
+
+let currentRecipe = null;
+let currentServings = 2;
+let isFavorite = false;
+
+// Open Modal
+function openModal(recipeId) {
+    currentRecipe = recipes[recipeId];
+    currentServings = currentRecipe.servings;
+    isFavorite = false;
+    
+    modalImage.src = currentRecipe.image;
+    modalImage.alt = currentRecipe.title;
+    modalTitle.textContent = currentRecipe.title;
+    modalMatchText.textContent = currentRecipe.match;
+    modalTime.textContent = currentRecipe.time;
+    modalDifficulty.textContent = currentRecipe.difficulty;
+    modalServings.textContent = `${currentRecipe.servings} personas`;
+    modalCalories.textContent = `${currentRecipe.calories} kcal`;
+    modalDescription.textContent = currentRecipe.description;
+    servingsCount.textContent = currentServings;
+    
+    renderIngredients();
+    renderSteps();
+    renderNutrition();
+    
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+        modal.classList.add('active');
+    }, 10);
+    
+    document.body.style.overflow = 'hidden';
+}
+
+// Close Modal
+function closeModal() {
+    modal.classList.remove('active');
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 300);
+}
+
+// Render Ingredients
+function renderIngredients() {
+    const ratio = currentServings / currentRecipe.servings;
+    ingredientsList.innerHTML = currentRecipe.ingredients.map((ing, index) => {
+        const amount = Math.round(ing.amount * ratio);
+        const checkedClass = ing.inStock ? 'checked' : '';
+        const stockIcon = ing.inStock ? 'check_circle' : 'add_shopping_cart';
+        const stockColor = ing.inStock ? 'text-green-600' : 'text-orange-600';
+        
+        return `
+            <li class="ingredient-item flex items-center gap-3 p-3 bg-surface-variant/5 rounded-xl ${checkedClass}" data-index="${index}">
+                <span class="material-symbols-outlined ${stockColor}">${stockIcon}</span>
+                <span class="flex-1">
+                    <strong>${amount} ${ing.unit}</strong> de ${ing.name}
+                </span>
+                ${!ing.inStock ? '<span class="text-xs text-orange-600 font-medium">Faltante</span>' : '<span class="text-xs text-green-600 font-medium">En tu nevera</span>'}
+            </li>
+        `;
+    }).join('');
+}
+
+// Render Steps
+function renderSteps() {
+    stepsList.innerHTML = currentRecipe.steps.map((step, index) => `
+        <li class="step-item flex gap-4">
+            <div class="flex-shrink-0 w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold">
+                ${index + 1}
+            </div>
+            <div class="flex-1 pt-2">
+                <p class="text-body-md">${step.text}</p>
+                ${step.timer > 0 ? `<p class="text-sm text-on-surface-variant mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">timer</span> ${Math.floor(step.timer / 60)} min</p>` : ''}
+            </div>
+        </li>
+    `).join('');
+}
+
+// Render Nutrition
+function renderNutrition() {
+    document.getElementById('nutrition-calories').textContent = currentRecipe.nutrition.calories;
+    document.getElementById('nutrition-protein').textContent = currentRecipe.nutrition.protein;
+    document.getElementById('nutrition-carbs').textContent = currentRecipe.nutrition.carbs;
+    document.getElementById('nutrition-fat').textContent = currentRecipe.nutrition.fat;
+    
+    const dietaryTags = document.getElementById('dietary-tags');
+    dietaryTags.innerHTML = currentRecipe.dietary.map(tag => `
+        <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">${tag}</span>
+    `).join('');
+}
+
+// Tab Switching
+document.querySelectorAll('.tab-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const tab = button.dataset.tab;
+        
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.classList.remove('active', 'text-primary', 'border-primary');
+            btn.classList.add('text-on-surface-variant', 'border-transparent');
+        });
+        button.classList.add('active', 'text-primary', 'border-primary');
+        button.classList.remove('text-on-surface-variant', 'border-transparent');
+        
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        document.getElementById(`tab-${tab}`).classList.remove('hidden');
+    });
+});
+
+// Servings Adjustment
+decreaseServings.addEventListener('click', () => {
+    if (currentServings > 1) {
+        currentServings--;
+        servingsCount.textContent = currentServings;
+        renderIngredients();
+    }
+});
+
+increaseServings.addEventListener('click', () => {
+    currentServings++;
+    servingsCount.textContent = currentServings;
+    renderIngredients();
+});
+
+// Favorite Toggle
+modalFavorite.addEventListener('click', () => {
+    isFavorite = !isFavorite;
+    modalFavorite.classList.toggle('active');
+    
+    if (isFavorite) {
+        modalFavorite.querySelector('.material-symbols-outlined').textContent = 'favorite';
+    } else {
+        modalFavorite.querySelector('.material-symbols-outlined').textContent = 'favorite_border';
+    }
+});
+
+// Share
+modalShare.addEventListener('click', () => {
+    if (navigator.share) {
+        navigator.share({
+            title: currentRecipe.title,
+            text: currentRecipe.description,
+            url: window.location.href
+        });
+    } else {
+        alert('Función de compartir no disponible en este navegador');
+    }
+});
+
+// Add to Shopping List
+addToList.addEventListener('click', () => {
+    const missingIngredients = currentRecipe.ingredients.filter(ing => !ing.inStock);
+    if (missingIngredients.length > 0) {
+        alert(`Se han añadido ${missingIngredients.length} ingredientes faltantes a tu lista de compra`);
+    } else {
+        alert('¡Ya tienes todos los ingredientes!');
+    }
+});
+
+// Start Cooking Mode
+startCooking.addEventListener('click', () => {
+    startCookingMode();
+});
+
+// Cooking Mode
+function startCookingMode() {
+    closeModal();
+    
+    const cookingOverlay = document.createElement('div');
+    cookingOverlay.className = 'cooking-mode';
+    cookingOverlay.innerHTML = `
+        <div class="p-4 flex justify-between items-center bg-surface-variant/10">
+            <h3 class="font-headline-md text-xl">${currentRecipe.title}</h3>
+            <button id="exit-cooking" class="bg-surface p-2 rounded-full hover:bg-on-surface/10">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="step-content">
+            <div class="step-number">1</div>
+            <div class="step-text">${currentRecipe.steps[0].text}</div>
+            ${currentRecipe.steps[0].timer > 0 ? `<div class="timer">${Math.floor(currentRecipe.steps[0].timer / 60)}:00</div>` : ''}
+        </div>
+        <div class="p-4 flex justify-between items-center bg-surface-variant/10">
+            <button id="prev-step" class="bg-surface px-6 py-3 rounded-xl font-label-md flex items-center gap-2" disabled>
+                <span class="material-symbols-outlined">arrow_back</span>
+                Anterior
+            </button>
+            <span class="font-label-md">Paso 1 de ${currentRecipe.steps.length}</span>
+            <button id="next-step" class="bg-primary text-on-primary px-6 py-3 rounded-xl font-label-md flex items-center gap-2">
+                Siguiente
+                <span class="material-symbols-outlined">arrow_forward</span>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(cookingOverlay);
+    
+    let currentStep = 0;
+    const prevButton = cookingOverlay.querySelector('#prev-step');
+    const nextButton = cookingOverlay.querySelector('#next-step');
+    const exitButton = cookingOverlay.querySelector('#exit-cooking');
+    
+    function updateStep() {
+        const stepContent = cookingOverlay.querySelector('.step-content');
+        stepContent.innerHTML = `
+            <div class="step-number">${currentStep + 1}</div>
+            <div class="step-text">${currentRecipe.steps[currentStep].text}</div>
+            ${currentRecipe.steps[currentStep].timer > 0 ? `<div class="timer">${Math.floor(currentRecipe.steps[currentStep].timer / 60)}:00</div>` : ''}
+        `;
+        
+        cookingOverlay.querySelector('.font-label-md:last-of-type').textContent = `Paso ${currentStep + 1} de ${currentRecipe.steps.length}`;
+        
+        prevButton.disabled = currentStep === 0;
+        nextButton.textContent = currentStep === currentRecipe.steps.length - 1 ? 'Finalizar' : 'Siguiente';
+    }
+    
+    prevButton.addEventListener('click', () => {
+        if (currentStep > 0) {
+            currentStep--;
+            updateStep();
+        }
+    });
+    
+    nextButton.addEventListener('click', () => {
+        if (currentStep < currentRecipe.steps.length - 1) {
+            currentStep++;
+            updateStep();
+        } else {
+            cookingOverlay.remove();
+            alert('¡Receta completada! ¡Buen provecho!');
+        }
+    });
+    
+    exitButton.addEventListener('click', () => {
+        cookingOverlay.remove();
+    });
+}
+
+// Event Listeners for Recipe Cards
+document.querySelectorAll('[data-recipe-id]').forEach((card) => {
+    card.addEventListener('click', () => {
+        const recipeId = card.getAttribute('data-recipe-id');
+        openModal(recipeId);
+    });
+});
+
+// Close Modal Events
+modalClose.addEventListener('click', closeModal);
+modalBackdrop.addEventListener('click', closeModal);
+
+// ESC Key to Close
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+    }
+});
+</script>
+
+<!-- Final CTA -->
+ <section id="cta" class="bg-transparent reveal">
+    <div class="mx-auto max-w-7xl py-12 sm:px-6 sm:py-24 lg:px-8">
+        <div class="relative isolate overflow-hidden bg-[#251913] px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+
+            <svg viewBox="0 0 1024 1024" aria-hidden="true" class="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0">
+                <circle r="512" cx="512" cy="512" fill="url(#cooker-gradient)" fill-opacity="0.6" />
+                <defs>
+                <radialGradient id="cooker-gradient">
+                    <stop stop-color="#9d4300" />
+                    <stop offset="1" stop-color="#006c49" />
+                </radialGradient>
+                </defs>
+            </svg>
+
+            <div class="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                <h2 class="font-headline-lg text-headline-lg text-white mb-md">
+                ¿Listo para revolucionar tu cocina?
+                </h2>
+                <p class="font-body-md text-body-md text-surface-variant/80 mb-lg">
+                Únete a miles de personas que ya están ahorrando tiempo y dinero transformando sus ingredientes en platos deliciosos con COOKER.
+                </p>
+                <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                <!-- Botón Empezar a cocinar ahora -> auth.html?mode=register -->
+                <a href="auth.html?mode=register" class="rounded-[10px] bg-primary text-white h-[48px] px-lg flex items-center justify-center font-label-md transition-all duration-200 hover:opacity-90 active:scale-95 shadow-md">
+                    Empezar a cocinar ahora
+                </a>
+                <a href="#how-it-works" class="font-label-md text-sm text-white hover:text-surface-variant transition-colors flex items-center gap-1">
+                    Ver cómo funciona <span aria-hidden="true">→</span>
+                </a>
+                </div>
+            </div>
+
+            <div class="relative mt-16 h-80 lg:mt-8 flex-1">
+                <img width="1824" height="1080" src="https://tailwindcss.com/plus-assets/img/component-images/dark-project-app-screenshot.png" alt="COOKER App Screenshot" class="absolute top-0 left-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" />
+            </div>
+
+        </div>
+    </div>
+ </section>
 </main>
 <!-- Footer -->
-<footer class="w-full py-lg px-gutter grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md bg-surface-container-low border-t border-outline-variant font-label-md text-label-md">
-<div class="flex flex-col gap-sm">
-<div class="text-headline-md font-headline-md font-bold text-primary mb-sm">COOKER</div>
-<p class="text-on-surface-variant">Tu asistente culinario inteligente para un hogar más sostenible.</p>
-<p class="mt-md text-on-surface-variant opacity-60">© 2024 COOKER. Tu asistente culinario inteligente.</p>
-</div>
-<div>
-<h4 class="font-bold text-primary mb-md">Plataforma</h4>
-<ul class="flex flex-col gap-xs text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="#">Cómo funciona</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Recetas</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Planes</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold text-primary mb-md">Empresa</h4>
-<ul class="flex flex-col gap-xs text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="#">Privacidad</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Términos</a></li>
-<li><a class="hover:text-primary transition-colors" href="#">Soporte</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-bold text-primary mb-md">Contacto</h4>
-<ul class="flex flex-col gap-xs text-on-surface-variant">
-<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">mail</span> hola@cooker.app</li>
-<li class="flex items-center gap-xs"><span class="material-symbols-outlined text-[18px]">location_on</span> Barcelona, España</li>
-</ul>
-<div class="flex gap-sm mt-md">
-<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">face_nod</span>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">language</span>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:opacity-70">public</span>
-</div>
-</div>
+<footer class="w-full bg-[#251913] text-on-surface border-t border-outline-variant/20 pt-16 pb-12 font-label-md text-sm">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+      
+      <div class="flex flex-col gap-2">
+        <div class="flex items-center gap-3 text-white text-xl font-bold tracking-tight font-headline-md">
+          <img src="assets/logo-footer.png" alt="Logo COOKER" class="w-7 h-7 rounded" />
+          <span>COOKER</span>
+        </div>
+        <p class="text-white/60 text-xs max-w-xs leading-relaxed">
+          Tu asistente culinario inteligente para un hogar más sostenible.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Plataforma</h4>
+        <ul class="text-white flex flex-col gap-3 text-on-surface-variant/80">
+          <li><a href="#how-it-works" class="text-white hover:text-primary transition-colors">Cómo funciona</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Recetas</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Planes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Empresa</h4>
+        <ul class="text-white flex flex-col gap-3 text-on-surface-variant/80">
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Privacidad</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Términos</a></li>
+          <li><a href="#" class="text-white hover:text-primary transition-colors">Soporte</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-on-surface mb-4">Contacto</h4>
+        <ul class="text-white flex flex-col gap-2 text-on-surface-variant/80">
+          <li><a href="mailto:hola@cooker.app" class="text-white hover:text-primary transition-colors">hola@cooker.app</a></li>
+          <li class="text-white text-xs text-on-surface-variant/50 mt-1">Barcelona, España</li>
+        </ul>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h4 class="text-white font-semibold text-on-surface mb-2">Descarga la App</h4>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-2">
+          
+          <a href="#" class="text-black flex items-center gap-3 border border-on-surface/10 hover:border-on-surface/30 bg-[#fff8f6] text-black rounded-xl py-2 px-3 transition-all duration-200 max-w-[155px]">
+            <i class="fa-brands fa-apple"></i>
+            <div class="flex flex-col leading-none">
+              <span class="text-[9px] text-black/60 tracking-wide font-light">Consíguelo en el</span>
+              <span class="text-black text-xs font-semibold font-headline-md mt-0.5">App Store</span>
+            </div>
+          </a>
+          <a href="#" class="text-black flex items-center gap-3 border border-on-surface/10 hover:border-on-surface/30 bg-[#fff8f6] text-black rounded-xl py-2 px-3 transition-all duration-200 max-w-[155px]">
+            <i class="fa-brands fa-google-play"></i>
+            <div class="flex flex-col leading-none">
+              <span class="text-[9px] text-black/60 tracking-wide font-light">Disponible en</span>
+              <span class="text-black text-xs font-semibold font-headline-md mt-0.5">Google Play</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full h-[1px] bg-on-surface/[0.08] mb-6"></div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-on-surface-variant/50">
+      
+      <div class="text-white">
+        Copyright © 2026 COOKER. Todos los derechos reservados.
+      </div>
+      
+      <div class="flex items-center gap-5 text-on-surface/80">
+        <a href="#" class="hover:text-primary transition-colors" aria-label="Facebook">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors" aria-label="Twitter">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31 0 2.58.33 3.7.94a5.61 5.61 0 0 1-1.12 3.16 5.56 5.56 0 0 1-3.19 1.95v3.62c2.05-.12 3.96.69 5.3 2.15a6.52 6.52 0 0 1 1.76 4.54c0 3.63-2.94 6.58-6.57 6.58-3.63 0-6.58-2.95-6.58-6.58 0-3.32 2.46-6.07 5.66-6.51V2.83c-1.58.35-3 .98-4.14 1.87A6.52 6.52 0 0 0 5 9.4c0 3.63 2.95 6.58 6.58 6.58s6.58-2.95 6.58-6.58c0-.66-.1-1.3-.29-1.9a5.53 5.53 0 0 1-3.21-3.95c.78-.1 1.5-.4 2.12-.86A5.57 5.57 0 0 0 19 1.15a6.6 6.6 0 0 0-4.06-1.11H12.525z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors" aria-label="Instagram">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+        </a>
+        <a href="#" class="hover:text-primary transition-colors" aria-label="YouTube">
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
 </footer>
 <script>
-        // Intersection Observer for Reveal animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  // =========================================================================
+// 1. INTERSECTION OBSERVER: ANIMACIONES AL HACER SCROLL (REVEAL)
+// =========================================================================
+const observerOptions = {
+    threshold: 0.15,        // El elemento debe estar visible un 15% para activarse
+    rootMargin: '0px 0px -60px 0px'
+};
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Opcional: Si no quieres que se vuelva a ocultar al subir, puedes dejar de observarlo:
+            // revealObserver.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-        // Micro-interactions for hover states
-        document.querySelectorAll('.card-shadow').forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
-            });
-        });
-    </script>
-</body></html>
+// =========================================================================
+// 1b. HAMBURGER MENU TOGGLE (MÓVIL) - OPTIMIZADO
+// =========================================================================
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = menuToggle?.querySelector('.material-symbols-outlined');
+
+menuToggle?.addEventListener('click', () => {
+    // Verificamos si el menú está cerrado evaluando la clase de desplazamiento
+    const isClosed = mobileMenu.classList.contains('-translate-y-full');
+    
+    if (isClosed) {
+        // ACCIÓN: ABRIR MENÚ
+        mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
+        mobileMenu.classList.add('translate-y-0', 'opacity-100');
+        document.body.classList.add('overflow-hidden'); // Previene scroll de fondo
+        if (menuIcon) menuIcon.textContent = 'close';  // Cambia el icono a una 'X'
+    } else {
+        // ACCIÓN: CERRAR MENÚ
+        mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+        mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+        document.body.classList.remove('overflow-hidden'); // Devuelve el scroll
+        if (menuIcon) menuIcon.textContent = 'menu';   // Regresa al icono de hamburguesa
+    }
+});
+
+// Cerrar menú automáticamente al hacer clic en un enlace de sección
+mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+        mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+        document.body.classList.remove('overflow-hidden');
+        if (menuIcon) menuIcon.textContent = 'menu';
+    });
+});
+
+// =========================================================================
+// 2. SCROLLSPY & NAVBAR DINÁMICO: ILUMINAR MENÚ SEGÚN LA SECCIÓN ACTUAL
+// =========================================================================
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+const navbar = document.querySelector('nav');
+
+window.addEventListener('scroll', () => {
+    let currentSectionId = '';
+    const scrollPosition = window.scrollY + 150; // Ajuste para detectar la sección antes de llegar arriba
+
+    // A) Control de opacidad y sombra del Navbar flotante al hacer scroll
+    if (window.scrollY > 30) {
+        navbar.classList.remove('bg-surface/80');
+        navbar.classList.add('bg-surface/95', 'shadow-xl', 'py-2');
+    } else {
+        navbar.classList.remove('bg-surface/95', 'shadow-xl', 'py-2');
+        navbar.classList.add('bg-surface/80');
+    }
+
+    // B) Detectar qué sección está cruzando el Viewport
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+
+    // C) Intercambiar clases de Tailwind para resaltar el enlace activo
+    navLinks.forEach(link => {
+        link.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+        link.classList.add('text-on-surface-variant');
+
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.remove('text-on-surface-variant');
+            link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary');
+        }
+    });
+});
+
+
+// =========================================================================
+// 3. MICRO-INTERACCIONES: EFECTO 3D SUTIL (TILT) EN LAS TARJETAS
+// =========================================================================
+document.querySelectorAll('.card-shadow').forEach(card => {
+    // Aseguramos una transición fluida al entrar y salir
+    card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
+
+    card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        // Calculamos la posición del cursor dentro de la tarjeta (-1 a 1)
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        // Multiplicamos para obtener los grados de rotación (efecto inclinación sutil)
+        card.style.transform = `perspective(1000px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) translateY(-6px)`;
+        card.style.boxShadow = '0 15px 35px rgba(31, 41, 55, 0.12)';
+    });
+
+    card.addEventListener('mouseleave', () => {
+        // Al retirar el cursor, la tarjeta regresa suavemente a su posición original
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        card.style.boxShadow = '0 4px 20px rgba(31, 41, 55, 0.06)';
+    });
+});
+
+
+// =========================================================================
+// 4. FUNCIONALIDAD EXTRA: CONTROLADOR INTERACTIVO DE RECETAS (MATCH SYSTEM)
+// =========================================================================
+// Hacemos que al pulsar sobre las etiquetas de "Match %" se simule una acción
+document.querySelectorAll('.absolute.top-sm.right-sm').forEach(tag => {
+    tag.style.cursor = 'pointer';
+    tag.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita conflictos con otros clics
+        const recipeName = tag.closest('.bg-surface').querySelector('h4').innerText;
+        
+        // Creamos una pequeña notificación flotante temporal
+        const toast = document.createElement('div');
+        toast.className = "fixed bottom-6 right-6 bg-secondary text-white px-md py-sm rounded-xl shadow-2xl z-50 animate-bounce font-label-md";
+        toast.innerHTML = `✨ ¡Tienes todos los ingredientes para: <b>${recipeName}</b>!`;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => toast.remove(), 3500);
+    });
+});
+</script>
+</body>
+</html>
